@@ -1,0 +1,1574 @@
+:root {
+    color-scheme: dark;
+
+    --bg: #1A1A1A;
+    --surface: #1B1B1B;
+    --border: #393939;
+
+    --white: #FFFFFF;
+    --text: #C3D0DE;
+    --muted: #808080;
+    --muted-dark: #5F5F5F;
+
+    --accent: #FF6A3A;
+    --accent-dark: #994023;
+
+    --accent-gradient: linear-gradient(96.14deg,
+            #FF6A3A 6.95%,
+            #994023 97.18%);
+
+    --text-gradient: linear-gradient(180.41deg,
+            #FFFFFF -40.42%,
+            rgba(32, 34, 39, 0) 128.9%);
+
+    --container: 1600px;
+
+    --radius-lg: 40px;
+    --radius-pill: 999px;
+
+    --transition: 0.3s ease;
+}
+
+/* =========================================================
+   01. FONTS + RESET
+========================================================= */
+
+@font-face {
+    font-family: "Basement";
+    src: url("./fonts/BasementGrotesque-Black_v1.202.otf") format("opentype");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src: url("./fonts/Satoshi-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src: url("./fonts/Satoshi-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src: url("./fonts/Satoshi-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background: var(--bg);
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    background: var(--bg);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+button,
+a {
+    font: inherit;
+}
+
+button {
+    border: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+/* =========================================================
+   02. TYPOGRAPHY
+========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Basement", sans-serif;
+    font-weight: 900;
+    line-height: 1;
+}
+
+p,
+a,
+button,
+li,
+span,
+blockquote {
+    font-family: "Satoshi", sans-serif;
+}
+
+.section-title,
+.content-title,
+.case-title,
+.experience-title,
+.company-name,
+.testimonial-title,
+.hero-word {
+    font-family: "Basement", sans-serif;
+    font-weight: 900;
+}
+
+.body-text,
+.case-description,
+.experience-description,
+.testimonial-quote,
+.nav-link,
+.skill-chip,
+.stat-label,
+.company-period {
+    font-family: "Satoshi", sans-serif;
+}
+
+.body-text,
+.case-description,
+.experience-description {
+    color: var(--muted);
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.highlight {
+    color: var(--accent);
+}
+
+.section-title {
+    color: transparent;
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 64px;
+}
+
+.section-title1 {
+    color: transparent;
+    /* background: var(--text-gradient); */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 64px;
+}
+
+.content-title {
+    color: var(--muted);
+    font-size: 36px;
+    line-height: 1.15;
+}
+
+/* =========================================================
+   03. LAYOUT
+========================================================= */
+
+.container {
+    width: min(100% - 200px, var(--container));
+    margin-inline: auto;
+}
+
+.section {
+    width: 100%;
+    position: relative;
+}
+
+/* =========================================================
+   04. BUTTONS
+========================================================= */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+    padding: 12px 30px;
+
+    border-radius: var(--radius-pill);
+    background: var(--accent-gradient);
+
+    color: var(--white);
+    font-family: "Satoshi", sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+
+.button-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(255, 106, 58, 0.18);
+}
+
+
+/* =========================================================
+   05. HEADER / NAVIGATION
+========================================================= */
+
+.site-header {
+    width: 100%;
+}
+
+.navbar {
+    min-height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.navbar-logo {
+    flex-shrink: 0;
+}
+
+.navbar-logo img {
+    width: auto;
+    height: 40px;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-link {
+    color: var(--white);
+    font-size: 20px;
+    line-height: 1;
+    transition: color var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--accent);
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.menu-toggle {
+    width: 36px;
+    height: 28px;
+
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background: transparent;
+    cursor: pointer;
+    z-index: 20;
+}
+
+/* =========================================================
+   06. HERO
+========================================================= */
+
+.hero {
+    position: relative;
+    min-height: 100svh;
+    overflow: hidden;
+}
+
+#canvas1 {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+    cursor: crosshair;
+    touch-action: none;
+    z-index: 5;
+}
+
+#image1 {
+    display: none;
+}
+
+.hero-heading {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    right: 0;
+}
+
+#hero-eyebrow {
+    color: var(--muted);
+    font-family: "Basement", sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+}
+
+.hero-heading-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero-heading h1 {
+    margin: 0;
+
+    color: transparent;
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-size: clamp(72px, 9vw, 130px);
+    letter-spacing: -0.04em;
+}
+
+.hero-background-word,
+.hero-outline-word {
+    position: absolute;
+    inset-inline: 0;
+
+    display: flex;
+    justify-content: center;
+
+    pointer-events: none;
+
+    bottom: 10%;
+    font-size: 90px;
+    max-width: 100%;
+}
+
+.hero-background-word {
+    z-index: 0;
+}
+
+.hero-word {
+    line-height: 0.8;
+}
+
+.hero-word-filled {
+    color: var(--accent);
+}
+
+.hero-word-outline {
+    position: absolute;
+    bottom: 0;
+
+    color: transparent;
+    -webkit-text-stroke: 2px var(--accent);
+
+    opacity: 0.25;
+    z-index: 10;
+}
+
+.hero-logo {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    justify-content: center;
+}
+
+.hero-logo img {
+    max-width: 400px;
+    opacity: 0.05;
+}
+
+/* =========================================================
+   07. ABOUT
+========================================================= */
+
+.about {
+    padding-block: 100px;
+}
+
+.about-header {
+    margin-bottom: 80px;
+}
+
+.about-title {
+    max-width: 1200px;
+    font-size: clamp(48px, 5vw, 80px);
+    line-height: 1.05;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: minmax(300px, 520px) 1fr;
+    align-items: center;
+    gap: 80px;
+}
+
+.about-visual {
+    width: 100%;
+}
+
+.about-visual img {
+    width: 100%;
+}
+
+.about-content {
+    max-width: 720px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+}
+
+.about-stats {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+
+    margin-top: 20px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stat-number {
+    color: var(--accent);
+    font-family: "Basement", sans-serif;
+    font-size: 48px;
+    line-height: 1;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 16px;
+}
+
+/* =========================================================
+   08. EXPERTISE
+========================================================= */
+
+.expertise {
+    padding-block: 80px;
+}
+
+
+
+.expertise-title {
+    text-align: center;
+}
+
+.expertise-visuals {
+    min-height: 650px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.expertise-device {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.expertise-device img {
+    width: 100%;
+    object-fit: contain;
+}
+
+/* =========================================================
+   09. CASE STUDIES
+========================================================= */
+
+.case-studies {
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+
+.case-studies-header {
+    position: sticky;
+    top: 50px;
+    z-index: 1;
+
+    padding-bottom: 80px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.case-studies-title {
+    text-align: center;
+}
+
+.case-card {
+    min-height: 520px;
+
+    display: grid;
+    grid-template-columns: minmax(320px, 0.8fr) minmax(420px, 1.2fr);
+    align-items: center;
+    gap: 60px;
+
+    padding: 50px;
+    margin-bottom: 60px;
+
+    position: sticky;
+    top: 20%;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+
+    background: var(--surface);
+
+    transform-origin: top center;
+    transition: transform 0.1s linear;
+}
+
+.case-card:nth-of-type(2) {
+    z-index: 2;
+}
+
+.case-card:nth-of-type(3) {
+    z-index: 3;
+}
+
+.case-card:nth-of-type(4) {
+    z-index: 4;
+}
+
+.case-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.case-title {
+    color: var(--white);
+    font-size: clamp(34px, 3vw, 54px);
+    line-height: 1.05;
+}
+
+.case-category {
+    color: var(--muted);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.case-description {
+    max-width: 580px;
+}
+
+.case-button {
+    min-width: 220px;
+}
+
+.case-visual {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.case-visual img {
+    width: 100%;
+    max-height: 460px;
+    object-fit: contain;
+}
+
+/* =========================================================
+   10. EXPERIENCE
+========================================================= */
+
+.experience {
+    display: grid;
+    grid-template-columns: minmax(300px, 40%) 1fr;
+    gap: 80px;
+
+    align-items: start;
+    padding-block: 100px;
+}
+
+.experience-sidebar {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+}
+
+.experience-section-title {
+    margin-bottom: 60px;
+}
+
+.experience-intro {
+    max-width: 520px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 140px;
+}
+
+.experience-card {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.company-header {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.company-logo {
+    width: fit-content;
+}
+
+.company-logo img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+
+.company-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.company-name {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    color: var(--accent);
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.company-divider {
+    color: var(--muted-dark);
+    font-family: "Satoshi", sans-serif;
+}
+
+.company-period {
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.experience-title {
+    color: var(--muted);
+    font-size: clamp(36px, 3vw, 52px);
+    line-height: 1.05;
+}
+
+.experience-description {
+    max-width: 720px;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.skill-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+    padding: 9px 16px;
+
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-pill);
+
+    background: transparent;
+    color: var(--text);
+
+    font-size: 16px;
+    line-height: 1;
+
+    transition:
+        background var(--transition),
+        color var(--transition),
+        transform var(--transition);
+}
+
+.skill-chip:hover {
+    background: var(--accent);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   11. TESTIMONIALS
+========================================================= */
+
+.testimonials {
+    padding-block: 100px 200px;
+}
+
+.testimonials-header {
+    position: sticky;
+    top: 50px;
+    z-index: 1;
+
+    padding-bottom: 80px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.testimonials-title {
+    text-align: center;
+}
+
+.testimonial-card {
+    min-height: 420px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: sticky;
+    top: 20%;
+
+    margin-bottom: 30px;
+    padding: 60px;
+
+    border: 1px solid var(--accent-dark);
+    border-radius: var(--radius-lg);
+
+    background: var(--surface);
+
+    box-shadow: inset 0 0 20px rgba(255, 106, 58, 0.1);
+
+    transform-origin: top center;
+}
+
+.testimonial-card-one {
+    z-index: 1;
+}
+
+.testimonial-card-two {
+    z-index: 2;
+}
+
+.testimonial-card-three {
+    z-index: 3;
+}
+
+.testimonial-content {
+    max-width: 850px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+
+    text-align: center;
+}
+
+.testimonial-title {
+    font-size: clamp(32px, 3vw, 52px);
+}
+
+.testimonial-quote {
+    max-width: 760px;
+    font-size: clamp(20px, 2vw, 28px);
+    line-height: 1.45;
+    color: var(--white);
+}
+
+.testimonial-quote-icon {
+    position: absolute;
+    left: 80px;
+    top: -24px;
+
+    width: 48px;
+    height: 48px;
+
+    object-fit: contain;
+}
+
+.testimonial-button {
+    min-width: 220px;
+}
+
+/* =========================================================
+   12. CONTACT
+========================================================= */
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-block: 80px;
+    gap: 40px;
+}
+.contact h2{
+    text-align: center;
+    line-height: 1.05;
+}
+.contact p{
+      color: var(--muted);
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1.05;
+}
+
+
+.cta {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* =========================================================
+   Contact & Footer
+========================================================= */
+
+.site-footer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.footer-text {
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 49px;
+    background: linear-gradient(158.14deg, rgba(23, 23, 23, 0) -2.01%, #C4C4C4 50.89%, rgba(23, 23, 23, 0) 103.8%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* text-fill-color: transparent; */
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+
+/* =========================================================
+   14. RESPONSIVE — 1440px
+========================================================= */
+
+@media (max-width: 1440px) {
+    .container {
+        width: min(100% - 120px, var(--container));
+    }
+
+    .hero {
+        height: 65vh;
+        margin-top: 50px;
+    }
+
+    .hero-logo {
+        width: 450px;
+    }
+
+    .about-grid {
+        gap: 60px;
+    }
+
+    .case-card {
+        padding: 40px;
+        gap: 40px;
+    }
+
+    .experience {
+        gap: 60px;
+    }
+}
+
+/* =========================================================
+   15. RESPONSIVE — 1200px
+========================================================= */
+
+@media (max-width: 1200px) {
+    .container {
+        width: min(100% - 80px, var(--container));
+    }
+
+    .section-title {
+        font-size: 56px;
+    }
+
+    .hero {
+        min-height: 650px;
+    }
+
+    .hero-logo {
+        width: 420px;
+    }
+
+    .about-grid {
+        grid-template-columns: 360px 1fr;
+    }
+
+    .case-card {
+        grid-template-columns: 0.8fr 1.2fr;
+    }
+
+    .experience {
+        grid-template-columns: 35% 1fr;
+    }
+}
+
+/* =========================================================
+   16. RESPONSIVE — 992px
+========================================================= */
+
+@media (max-width: 992px) {
+    .container {
+        width: min(100% - 80px, var(--container));
+    }
+
+    .navbar-links {
+        display: none;
+
+        position: fixed;
+        inset: 0;
+
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        gap: 28px;
+
+        background: rgba(26, 26, 26, 0.98);
+        z-index: 15;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+
+    .nav-link {
+        font-size: 28px;
+    }
+
+    .navbar-actions .button {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .hero {
+        min-height: 680px;
+        height: auto;
+        margin-top: 100px;
+    }
+
+    .hero-logo {
+        width: 440px;
+    }
+
+    .hero-background-word {
+        bottom: 16%;
+    }
+
+    .hero-outline-word {
+        bottom: 8%;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .about-visual {
+        max-width: 560px;
+    }
+
+    .about-content {
+        max-width: 760px;
+    }
+
+    .expertise-visuals {
+        min-height: auto;
+        flex-wrap: wrap;
+    }
+
+    .expertise-device {
+        flex: 1 1 calc(50% - 20px);
+    }
+
+    .case-card {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .case-content {
+        max-width: 700px;
+    }
+
+    .case-visual {
+        order: -1;
+    }
+
+    .experience {
+        grid-template-columns: 1fr;
+        gap: 70px;
+    }
+
+    .experience-sidebar {
+        position: relative;
+        top: 0;
+    }
+
+    .experience-list {
+        gap: 100px;
+    }
+
+    .testimonial-card {
+        padding: 50px 40px;
+    }
+
+    .testimonial-quote-icon {
+        left: 50px;
+    }
+}
+
+/* =========================================================
+   17. RESPONSIVE — 768px
+========================================================= */
+
+@media (max-width: 768px) {
+    .container {
+        width: min(100% - 48px, var(--container));
+    }
+
+    .section-title {
+        font-size: 48px;
+    }
+
+    .body-text,
+    .case-description,
+    .experience-description {
+        font-size: 18px;
+    }
+
+    .hero {
+        min-height: 600px;
+        margin-top: 70px;
+    }
+
+    #hero-eyebrow {
+        font-size: 28px;
+    }
+
+    .hero-logo {
+        width: min(75vw, 360px);
+    }
+
+    .hero-word {
+        font-size: 16vw;
+    }
+
+    .hero-word-outline {
+        -webkit-text-stroke-width: 1px;
+    }
+
+    .about {
+        padding-block: 60px;
+    }
+
+    .about-header {
+        margin-bottom: 50px;
+    }
+
+    .about-stats {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .stat-number {
+        font-size: 40px;
+    }
+
+    .expertise-header,
+    .case-studies-header,
+    .testimonials-header {
+        padding-bottom: 50px;
+    }
+
+    .expertise-device {
+        flex: 1 1 100%;
+    }
+
+    .case-studies {
+        padding-bottom: 100px;
+    }
+
+    .case-card {
+        padding: 28px;
+        border-radius: 28px;
+        margin-bottom: 40px;
+        top: 10%;
+    }
+
+    .case-title {
+        font-size: 34px;
+    }
+
+    .experience {
+        padding-block: 60px;
+    }
+
+    .experience-section-title {
+        margin-bottom: 40px;
+    }
+
+    .experience-list {
+        gap: 80px;
+    }
+
+    .company-name {
+        font-size: 20px;
+    }
+
+    .experience-title {
+        font-size: 36px;
+    }
+
+    .skill-list {
+        gap: 8px;
+    }
+
+    .skill-chip {
+        min-height: 38px;
+        padding: 8px 13px;
+        font-size: 14px;
+    }
+
+    .testimonial-card {
+        min-height: 360px;
+        padding: 50px 28px;
+        border-radius: 28px;
+    }
+
+    .testimonial-quote-icon {
+        left: 28px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .testimonial-quote {
+        font-size: 20px;
+    }
+
+    .contact {
+        min-height: 300px;
+        padding-block: 80px;
+    }
+}
+
+/* =========================================================
+   18. RESPONSIVE — 480px
+========================================================= */
+
+@media (max-width: 480px) {
+    .container {
+        width: calc(100% - 40px);
+    }
+
+    .navbar {
+        min-height: 70px;
+    }
+
+    .navbar-logo img {
+        height: 32px;
+    }
+
+    .section-title {
+        font-size: 36px;
+        line-height: 1.05;
+    }
+
+    .content-title {
+        font-size: 28px;
+    }
+
+    .body-text,
+    .case-description,
+    .experience-description {
+        font-size: 16px;
+        line-height: 1.55;
+    }
+
+    .hero {
+        min-height: 540px;
+        margin-top: 50px;
+    }
+
+    #hero-eyebrow {
+        font-size: 22px;
+    }
+
+    .hero-heading h1 {
+        font-size: 48px;
+    }
+
+    .hero-logo {
+        width: 280px;
+    }
+
+    .hero-logo {
+        top: 54%;
+    }
+
+    .hero-background-word {
+        bottom: 18%;
+    }
+
+    .hero-outline-word {
+        bottom: 10%;
+    }
+
+    .hero-word {
+        font-size: 17vw;
+    }
+
+    .about-visual {
+        max-width: 320px;
+    }
+
+    .about-grid {
+        gap: 40px;
+    }
+
+    .about-stats {
+        gap: 20px;
+    }
+
+    .stat-number {
+        font-size: 34px;
+    }
+
+    .stat-label {
+        font-size: 14px;
+    }
+
+    .expertise {
+        padding-block: 40px;
+    }
+
+    .expertise-header {
+        margin-bottom: 50px;
+    }
+
+    .case-card {
+        padding: 22px;
+        border-radius: 24px;
+        gap: 30px;
+    }
+
+    .case-title {
+        font-size: 28px;
+    }
+
+    .case-category {
+        font-size: 15px;
+    }
+
+    .case-button,
+    .testimonial-button {
+        width: 100%;
+    }
+
+    .company-logo img {
+        height: 38px;
+    }
+
+    .company-name {
+        font-size: 18px;
+        gap: 8px;
+    }
+
+    .company-period {
+        font-size: 15px;
+    }
+
+    .experience-title {
+        font-size: 30px;
+    }
+
+    .testimonial-card {
+        min-height: 320px;
+        padding: 45px 20px 30px;
+    }
+
+    .testimonial-content {
+        gap: 20px;
+    }
+
+    .testimonial-title {
+        font-size: 28px;
+    }
+
+    .testimonial-quote {
+        font-size: 17px;
+    }
+
+    .testimonial-quote-icon {
+        left: 20px;
+        top: -18px;
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* =========================================================
+   19. REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    #canvas1 {
+        cursor: default;
+    }
+}
+
+/* =========================================================
+   AREA OF EXPERTISE — CINEMATIC ANIMATION
+========================================================= */
+
+.expertise {
+    position: relative;
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.expertise-header {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding-top: 9vh;
+
+    pointer-events: none;
+}
+
+.expertise-title {
+    margin: 0;
+
+    font-size: clamp(32px, 5.5vw, 88px);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+
+    text-align: center;
+
+    opacity: 0;
+
+    will-change: transform, opacity;
+}
+
+.expertise-visuals {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+}
+
+.expertise-device {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    will-change: transform, opacity;
+
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.expertise-device img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+    max-width: none;
+
+    user-select: none;
+    pointer-events: none;
+    -webkit-user-drag: none;
+
+    backface-visibility: hidden;
+}
+
+
+/* LEFT SCREEN */
+
+.expertise-device:nth-child(1) {
+    width: min(40vw, 500px);
+    z-index: 4;
+}
+
+
+/* MOBILE */
+
+.expertise-device:nth-child(2) {
+    width: min(21vw, 340px);
+    z-index: 10;
+}
+
+
+/* RIGHT SCREEN */
+
+.expertise-device:nth-child(3) {
+    width: min(40vw, 500px);
+    z-index: 4;
+}
+
+
+/* TITLE CHARACTERS */
+
+.expertise-title-char {
+    display: inline-block;
+
+    will-change: transform, opacity, filter;
+
+    transform: translateZ(0);
+    color: var(--white);
+    -webkit-text-fill-color: var(--white);
+
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+}
+
+
+
+/* TABLET */
+
+@media (max-width: 992px) {
+
+    .expertise-device:nth-child(1),
+    .expertise-device:nth-child(3) {
+        width: min(48vw, 500px);
+    }
+
+    .expertise-device:nth-child(2) {
+        width: min(38vw, 360px);
+    }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .expertise-header {
+        padding-top: 8vh;
+    }
+
+    .expertise-device:nth-child(1),
+    .expertise-device:nth-child(3) {
+        width: 70vw;
+    }
+
+    .expertise-device:nth-child(2) {
+        width: 58vw;
+    }
+}

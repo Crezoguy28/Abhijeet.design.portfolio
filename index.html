@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive particle image hero animation">
+    <title>Crezoguy — Product Designer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="navbar container" aria-label="Main navigation">
+            <a class="navbar-logo" href="#home" aria-label="Crezoguy Home">
+                <img src="images/logo.png" alt="Crezoguy">
+            </a>
+
+            <ul class="navbar-links" id="nav-links">
+                <li><a class="nav-link" href="#about">About Me</a></li>
+                <li><a class="nav-link" href="#work">My Work</a></li>
+                <li><a class="nav-link" href="#experience">Experience</a></li>
+                <li><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                <li><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="navbar-actions">
+                <a class="button button-primary" href="#contact">Hire Me</a>
+
+                <button class="menu-toggle" id="hamburger" type="button" aria-label="Open menu"
+                    aria-controls="nav-links" aria-expanded="false">
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- HERO -->
+        <section class="hero" id="home" aria-label="Interactive hero illustration">
+
+            <div class="hero-heading">
+                <span id="hero-eyebrow">Hello I'm </span>
+
+                <div class="hero-heading-text">
+                    <h1>Product</h1>
+                    <h1>Designer</h1>
+                </div>
+            </div>
+
+            <div class="hero-background-word" aria-hidden="true">
+                <h2 class="hero-word hero-word-filled">CREZOGUY</h2>
+            </div>
+
+            <div class="hero-logo" aria-hidden="true">
+                <img src="images/logo-icon.png" alt="">
+            </div>
+
+            <div class="hero-outline-word" aria-hidden="true">
+                <h2 class="hero-word hero-word-outline">CREZOGUY</h2>
+            </div>
+
+            <canvas id="canvas1" aria-hidden="true"></canvas>
+            <img id="image1" src="images/image.png" alt="">
+        </section>
+
+        <!-- ABOUT -->
+        <section class="section about" id="about" aria-labelledby="about-title">
+            <header class="section-header about-header">
+                <h2 class="section-title about-title" id="about-title">
+                    Designing Beyond the Ordinary.<br>
+                    Creating the Unforgettable.
+                </h2>
+            </header>
+
+            <div class="about-grid">
+                <div class="about-visual">
+                    <img src="images/Group 8.png" alt="Creative portrait representing Abhijeet Kumawat">
+                </div>
+
+                <div class="about-content">
+                    <h3 class="content-title expertise-title">
+                        Hello! I'm <span class="highlight">Abhijeet Kumawat</span>
+                    </h3>
+
+                    <p class="body-text">
+                        Known by my creative identity Crezoguy, the visionary behind Crezography.
+                        Crezography isn't just a name; it's a mindset. The word blends "Crezo"
+                        (inspired by "crazy" for bold, mind-blowing creativity) with "graphy"
+                        representing everything I do: graphic design, photography, cinematography,
+                        and beyond.
+                    </p>
+
+                    <div class="about-stats">
+                        <div class="stat">
+                            <strong class="stat-number">2+</strong>
+                            <span class="stat-label">Year Experience</span>
+                        </div>
+                        <div class="stat">
+                            <strong class="stat-number">15+</strong>
+                            <span class="stat-label">Projects Delivered</span>
+                        </div>
+                        <div class="stat">
+                            <strong class="stat-number">5+</strong>
+                            <span class="stat-label">Industries Worked</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AREA OF EXPERTISE -->
+        <section class="section expertise" id="work" aria-labelledby="expertise-title">
+            <header class="section-header expertise-header">
+                <h2 class="section-title1 expertise-title" id="expertise-title">
+                    Area of Expertise
+                </h2>
+            </header>
+
+            <div class="expertise-visuals">
+                <div class="expertise-device">
+                    <img src="images/Left device.png" alt="Website interface design">
+                </div>
+
+                <div class="expertise-device">
+                    <img src="images/Mobile.png" alt="Mobile application interface design">
+                </div>
+
+                <div class="expertise-device">
+                    <img src="images/Right device.png" alt="Dashboard interface design">
+                </div>
+            </div>
+        </section>
+
+        <!-- CASE STUDIES -->
+        <section class="section case-studies" aria-labelledby="case-studies-title">
+            <header class="section-header case-studies-header">
+                <h2 class="section-title case-studies-title" id="case-studies-title">
+                    Case Studies
+                </h2>
+            </header>
+
+            <article class="case-card case-card-hrms">
+                <div class="case-content">
+                    <h3 class="case-title"><span class="highlight">HRMS Dashboard</span></h3>
+                    <p class="case-category">HR Management SaaS Platform</p>
+                    <p class="case-description">
+                        Designed a centralized HR platform that simplifies employee management,
+                        recruitment workflows, and performance tracking through a clear,
+                        data-driven dashboard experience.
+                    </p>
+                    <a class="button button-primary case-button" href="#">Read Case Study</a>
+                </div>
+
+                <div class="case-visual">
+                    <img src="images/hrms.png" alt="HRMS Dashboard interface">
+                </div>
+            </article>
+
+            <article class="case-card case-card-gapalyze">
+                <div class="case-content">
+                    <h3 class="case-title"><span class="highlight">Gapalyze Dashboard</span></h3>
+                    <p class="case-category">SaaS Data Analytics Platform.</p>
+                    <p class="case-description">
+                        Designed a modern analytics dashboard that transforms complex business
+                        data into clear visual insights, enabling faster and more informed
+                        decision-making.
+                    </p>
+                    <a class="button button-primary case-button" href="#">Read Case Study</a>
+                </div>
+
+                <div class="case-visual">
+                    <img src="images/gapalyze.png" alt="Gapalyze analytics dashboard">
+                </div>
+            </article>
+
+            <article class="case-card case-card-tiperx">
+                <div class="case-content">
+                    <h3 class="case-title"><span class="highlight">TiperX Trading Tips App</span></h3>
+                    <p class="case-category">Mobile Trading Tips and Insights Platform</p>
+                    <p class="case-description">
+                        Created a streamlined mobile trading experience that helps users monitor
+                        markets, manage portfolios, and execute trades quickly with a clear and
+                        intuitive interface.
+                    </p>
+                    <a class="button button-primary case-button" href="#">Read Case Study</a>
+                </div>
+
+                <div class="case-visual">
+                    <img src="images/TipperX.png" alt="TiperX trading tips mobile application">
+                </div>
+            </article>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section class="section experience" id="experience" aria-labelledby="experience-title">
+            <aside class="experience-sidebar">
+                <h2 class="section-title experience-section-title" id="experience-title">
+                    MY JOURNEY
+                </h2>
+
+                <div class="experience-intro">
+                    <h3 class="content-title">
+                        Building <span class="highlight">Digital Products</span>
+                    </h3>
+
+                    <p class="body-text">
+                        From crafting visual interfaces to designing end-to-end digital products
+                        across SaaS, mobile and web platforms. Every role strengthened my product
+                        thinking, user experience and problem-solving approach.
+                    </p>
+                </div>
+            </aside>
+
+            <div class="experience-list">
+
+                <article class="experience-card">
+                    <header class="company-header">
+                        <div class="company-logo">
+                            <img src="images/Company-logo/Bestpeers.png" alt="BestPeers Infosystem">
+                        </div>
+
+                        <div class="company-info">
+                            <h3 class="company-name">
+                                BestPeers Infosystem
+                                <span class="company-divider">|</span>
+                                UI/UX Designer
+                            </h3>
+
+                            <p class="company-period">Apr 2026 — Current</p>
+                        </div>
+                    </header>
+
+                    <h4 class="experience-title">
+                        Designing products <span class="highlight">At Scale</span>
+                    </h4>
+
+                    <p class="experience-description">
+                        Currently designing scalable digital experiences across enterprise
+                        dashboards, responsive websites and mobile applications while collaborating
+                        closely with developers and stakeholders.
+                    </p>
+
+                    <ul class="skill-list">
+                        <li class="skill-chip">Figma</li>
+                        <li class="skill-chip">Photoshop</li>
+                        <li class="skill-chip">Wireframing</li>
+                        <li class="skill-chip">UI Design</li>
+                        <li class="skill-chip">Dashboard Design</li>
+                        <li class="skill-chip">Mobile Apps</li>
+                        <li class="skill-chip">Website Design</li>
+                        <li class="skill-chip">Brand Identity</li>
+                        <li class="skill-chip">Responsive Design</li>
+                    </ul>
+                </article>
+
+                <article class="experience-card">
+                    <header class="company-header">
+                        <div class="company-logo">
+                            <img src="images/Company-logo/tout.png" alt="Throughout Technologies">
+                        </div>
+
+                        <div class="company-info">
+                            <h3 class="company-name">
+                                Throughout Technologies
+                                <span class="company-divider">|</span>
+                                Graphic &amp; UI/UX Designer
+                            </h3>
+
+                            <p class="company-period">May 2024 — Jun 2025</p>
+                        </div>
+                    </header>
+
+                    <h4 class="experience-title">
+                        Owning the <span class="highlight">Complete Process</span>
+                    </h4>
+
+                    <p class="experience-description">
+                        Led end-to-end product design for TiperX, HRMS and Gapalyze, covering
+                        research, user flows, information architecture, wireframing, prototyping,
+                        interface design and usability improvements.
+                    </p>
+
+                    <ul class="skill-list">
+                        <li class="skill-chip">Figma</li>
+                        <li class="skill-chip">Photoshop</li>
+                        <li class="skill-chip">Wireframing</li>
+                        <li class="skill-chip">UI Design</li>
+                        <li class="skill-chip">Dashboard Design</li>
+                        <li class="skill-chip">Mobile Apps</li>
+                        <li class="skill-chip">Website Design</li>
+                        <li class="skill-chip">Brand Identity</li>
+                        <li class="skill-chip">Responsive Design</li>
+                    </ul>
+                </article>
+
+                <article class="experience-card">
+                    <header class="company-header">
+                        <div class="company-logo">
+                            <img src="images/Company-logo/Lemosys.png" alt="Lemosys Infotech">
+                        </div>
+
+                        <div class="company-info">
+                            <h3 class="company-name">
+                                Lemosys Infotech
+                                <span class="company-divider">|</span>
+                                Graphic &amp; UI/UX Designer
+                            </h3>
+
+                            <p class="company-period">MAY 2024 — JUN 2025</p>
+                        </div>
+                    </header>
+
+                    <h4 class="experience-title">
+                        Where it all <span class="highlight">Started</span>
+                    </h4>
+
+                    <p class="experience-description">
+                        From crafting visual interfaces to designing end-to-end digital products
+                        across SaaS, mobile and web platforms. Every role strengthened my product
+                        thinking, user experience and problem-solving approach.
+                    </p>
+
+                    <ul class="skill-list">
+                        <li class="skill-chip">Figma</li>
+                        <li class="skill-chip">Photoshop</li>
+                        <li class="skill-chip">Wireframing</li>
+                        <li class="skill-chip">UI Design</li>
+                        <li class="skill-chip">Dashboard Design</li>
+                        <li class="skill-chip">Mobile Apps</li>
+                        <li class="skill-chip">Website Design</li>
+                        <li class="skill-chip">Brand Identity</li>
+                        <li class="skill-chip">Responsive Design</li>
+                    </ul>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="section testimonials" id="testimonials" aria-labelledby="testimonials-title">
+            <header class="section-header testimonials-header">
+                <h2 class="section-title testimonials-title" id="testimonials-title">
+                    What My Clients Say
+                </h2>
+            </header>
+
+            <article class="testimonial-card testimonial-card-one">
+                <img class="testimonial-quote-icon" src="images/quote-icon.png" alt="" aria-hidden="true">
+
+                <div class="testimonial-content">
+                    <h3 class="testimonial-title"><span class="highlight">HRMS Dashboard</span></h3>
+
+                    <blockquote class="testimonial-quote">
+                        "Abhijeet doesn't just design screens — he redesigns how our team thinks
+                        about the product. Every handoff feels like a gift."
+                    </blockquote>
+
+                    <a class="button button-primary testimonial-button" href="#">Read Case Study</a>
+                </div>
+            </article>
+
+            <article class="testimonial-card testimonial-card-two">
+                <img class="testimonial-quote-icon" src="images/quote-icon.png" alt="" aria-hidden="true">
+
+                <div class="testimonial-content">
+                    <h3 class="testimonial-title"><span class="highlight">Gapalyze Dashboard</span></h3>
+
+                    <blockquote class="testimonial-quote">
+                        "Abhijeet doesn't just design screens — he redesigns how our team thinks
+                        about the product. Every handoff feels like a gift."
+                    </blockquote>
+
+                    <a class="button button-primary testimonial-button" href="#">Read Case Study</a>
+                </div>
+            </article>
+
+            <article class="testimonial-card testimonial-card-three">
+                <img class="testimonial-quote-icon" src="images/quote-icon.png" alt="" aria-hidden="true">
+
+                <div class="testimonial-content">
+                    <h3 class="testimonial-title"><span class="highlight">TiperX Trading Tips App</span></h3>
+
+                    <blockquote class="testimonial-quote">
+                        "Abhijeet doesn't just design screens — he redesigns how our team thinks
+                        about the product. Every handoff feels like a gift."
+                    </blockquote>
+
+                    <a class="button button-primary testimonial-button" href="#">Read Case Study</a>
+                </div>
+            </article>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section contact" id="contact" aria-labelledby="contact-title">
+            <h2 class="section-title" id="contact-title">Let's Build Something <br>Unforgettable</h2>
+            <p> Have a project, opportunity, or just want to talk?</p>
+            <div class="cta">
+                <button class="button button-primary" id="contact-button">Let’s Talk</button>
+                <a class="button-secondary" href="mailto:contact@abhijeet.design"><img src="images/resume-icon.svg"
+                        alt=""> View Resume</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <span class="footer-text">Designed & Developed By</span>
+            <div class="social-links">
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <img src="images\Social-icons\Behance.svg" alt="Behance">
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <img src="images\Social-icons\Dribble.svg" alt="Dribble">
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <img src="images\Social-icons\GitHub.svg" alt="GitHub">
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <img src="images\Social-icons\Instagram.svg" alt="Instagram">
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <img src="images\Social-icons\LinkedIn.svg" alt="LinkedIn">
+                </a>
+
+            </div>
+        </div>
+        <img src="images/Crezoguy-text.png" alt="">
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
