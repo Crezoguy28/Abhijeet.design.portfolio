@@ -1,0 +1,90 @@
+/* =========================================================
+   COMPONENTS
+   Reusable UI components used across the website
+========================================================= */
+
+
+/* =========================================================
+   01. BUTTON
+========================================================= */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+    padding: 12px 30px;
+
+    border-radius: var(--radius-pill);
+    background: var(--accent-gradient);
+
+    color: var(--white);
+    font-family: "Satoshi", sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(255, 106, 58, 0.18);
+}
+
+
+/* =========================================================
+   02. SECONDARY BUTTON
+========================================================= */
+
+.button-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* =========================================================
+   03. SKILL CHIP
+========================================================= */
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.skill-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+    padding: 9px 16px;
+
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-pill);
+
+    background: transparent;
+    color: var(--text);
+
+    font-family: "Satoshi", sans-serif;
+    font-size: 16px;
+    line-height: 1;
+
+    transition:
+        background var(--transition),
+        color var(--transition),
+        transform var(--transition);
+}
+
+.skill-chip:hover {
+    background: var(--accent);
+    color: var(--white);
+    transform: translateY(-2px);
+}

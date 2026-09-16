@@ -1,0 +1,30 @@
+/* =========================================================
+   12. CONTACT
+========================================================= */
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-block: 80px;
+    gap: 40px;
+}
+
+.contact h2 {
+    text-align: center;
+    line-height: 1.05;
+}
+
+.contact p {
+    color: var(--muted);
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1.05;
+}
+
+.cta {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}

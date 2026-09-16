@@ -1,0 +1,109 @@
+/* =========================================================
+   HERO
+   Desktop Hero styles
+========================================================= */
+
+.hero {
+    position: relative;
+    min-height: 100svh;
+    overflow: hidden;
+}
+
+#canvas1 {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+    cursor: crosshair;
+    touch-action: none;
+    z-index: 5;
+}
+
+#image1 {
+    display: none;
+}
+
+.hero-heading {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    right: 0;
+}
+
+#hero-eyebrow {
+    color: var(--muted);
+    font-family: "Basement", sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+}
+
+.hero-heading-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero-heading h1 {
+    margin: 0;
+
+    color: transparent;
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-size: clamp(72px, 9vw, 130px);
+    letter-spacing: -0.04em;
+}
+
+.hero-background-word,
+.hero-outline-word {
+    position: absolute;
+    inset-inline: 0;
+
+    display: flex;
+    justify-content: center;
+
+    pointer-events: none;
+
+    bottom: 10%;
+    font-size: 90px;
+    max-width: 100%;
+}
+
+.hero-background-word {
+    z-index: 0;
+}
+
+.hero-word {
+    line-height: 0.8;
+}
+
+.hero-word-filled {
+    color: var(--accent);
+}
+
+.hero-word-outline {
+    position: absolute;
+    bottom: 0;
+
+    color: transparent;
+    -webkit-text-stroke: 2px var(--accent);
+
+    opacity: 0.25;
+    z-index: 10;
+}
+
+.hero-logo {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    justify-content: center;
+}
+
+.hero-logo img {
+    max-width: 400px;
+    opacity: 0.05;
+}

@@ -1,0 +1,224 @@
+/* =========================================================
+   BASE
+   Global variables, fonts, reset, typography and layout
+========================================================= */
+
+/* =========================================================
+   01. VARIABLES
+========================================================= */
+
+:root {
+    color-scheme: dark;
+
+    --bg: #060913;
+    --surface: #0A0E19;
+    --border: #121828;
+    --white: #FFFFFF;
+    --text: #C3D0DE;
+    --muted: #808080;
+    --muted-dark: #5F5F5F;
+
+    --accent: #FF6A3A;
+    --accent-dark: #994023;
+
+    --accent-gradient: linear-gradient(96.14deg,
+            #FF6A3A 6.95%,
+            #994023 97.18%);
+
+    --text-gradient: linear-gradient(180.41deg,
+            #FFFFFF -40.42%,
+            rgba(32, 34, 39, 0) 128.9%);
+
+    --container: 1600px;
+
+    --radius-lg: 40px;
+    --radius-pill: 999px;
+
+    --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =========================================================
+   02. FONTS
+========================================================= */
+
+@font-face {
+    font-family: "Basement";
+    src: url("../fonts/BasementGrotesque-Black_v1.202.otf") format("opentype");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src: url("../fonts/Satoshi-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src: url("../fonts/Satoshi-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src: url("../fonts/Satoshi-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* =========================================================
+   03. RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--bg);
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    background: var(--bg);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+button,
+a {
+    font: inherit;
+}
+
+button {
+    border: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+
+/* =========================================================
+   04. GLOBAL TYPOGRAPHY
+========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Basement", sans-serif;
+    font-weight: 900;
+    line-height: 1;
+}
+
+p,
+a,
+button,
+li,
+span,
+blockquote {
+    font-family: "Satoshi", sans-serif;
+}
+
+
+/* =========================================================
+   05. SHARED TYPOGRAPHY
+========================================================= */
+
+.section-title,
+.content-title,
+.case-title,
+.experience-title,
+.company-name,
+.testimonial-title,
+.hero-word {
+    font-family: "Basement", sans-serif;
+    font-weight: 900;
+}
+
+.body-text,
+.case-description,
+.experience-description,
+.testimonial-quote,
+.nav-link,
+.skill-chip,
+.stat-label,
+.company-period {
+    font-family: "Satoshi", sans-serif;
+}
+
+.body-text,
+.case-description,
+.experience-description {
+    color: var(--muted);
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.highlight {
+    color: var(--accent);
+}
+
+.section-title {
+    color: #aaaaaa;
+    font-size: 64px;
+}
+
+.section-title1 {
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 64px;
+}
+
+.content-title {
+    color: var(--muted);
+    font-size: 36px;
+    line-height: 1.15;
+}
+
+
+/* =========================================================
+   06. GLOBAL LAYOUT
+========================================================= */
+
+.container {
+    width: min(100% - 200px, var(--container));
+    margin-inline: auto;
+}
+
+.section {
+    width: 100%;
+    position: relative;
+}

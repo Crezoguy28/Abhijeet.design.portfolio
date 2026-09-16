@@ -1,0 +1,44 @@
+/* =========================================================
+   TEXT REVEAL ANIMATION
+========================================================= */
+
+.text-reveal,
+.section-title {
+    display: inline-block;
+}
+
+.text-reveal-char {
+    display: inline-block;
+    font-family: inherit;
+    will-change: transform, opacity, filter;
+    transform: translateZ(0);
+}
+#about-title{
+    text-align: left;
+    font-size: 80px;
+}
+
+/* =========================================================
+   SECTION TITLE REVEAL
+========================================================= */
+
+
+/* =========================================================
+   ABOUT PARAGRAPH
+========================================================= */
+
+.about .body-text {
+    text-align: left;
+}
+
+.about-text-word {
+    display: inline-block;
+    will-change: transform, opacity, filter;
+}
+
+.about-heading-word,
+.about-text-word {
+    display: inline-block;
+    will-change: transform, opacity, filter;
+}
+

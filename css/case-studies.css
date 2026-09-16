@@ -1,0 +1,107 @@
+/* =========================================================
+   09. CASE STUDIES
+========================================================= */
+
+.case-studies {
+    position: relative;
+    min-height: 110vh;
+    margin-top: 100px;
+}
+
+.case-studies-header {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+
+    pointer-events: none;
+}
+
+.case-studies-title {
+    text-align: center;
+}
+
+.case-card {
+    position: absolute;
+    top: 180px;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    min-height: 520px;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: minmax(320px, 0.8fr) minmax(420px, 1.2fr);
+    align-items: center;
+    gap: 60px;
+
+    padding: 50px;
+    margin: 0;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+
+    background: var(--surface);
+
+    transform-origin: 50% 0%;
+    will-change: transform;
+}
+
+.case-card-hrms {
+    z-index: 1;
+}
+
+.case-card-gapalyze {
+    z-index: 2;
+}
+
+.case-card-tiperx {
+    z-index: 3;
+}
+
+.case-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.case-title {
+    color: var(--white);
+    font-size: clamp(34px, 3vw, 54px);
+    line-height: 1.05;
+}
+
+.case-category {
+    color: var(--muted);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.case-description {
+    max-width: 580px;
+}
+
+.case-button {
+    min-width: 220px;
+}
+
+.case-visual {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.case-visual img {
+    width: 100%;
+    max-height: 460px;
+    object-fit: contain;
+}

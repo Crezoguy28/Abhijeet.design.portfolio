@@ -1,0 +1,62 @@
+/* =========================================================
+   NAVBAR
+   Desktop navigation styling
+========================================================= */
+
+.site-header {
+    width: 100%;
+}
+
+.navbar {
+    min-height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.navbar-logo {
+    flex-shrink: 0;
+}
+
+.navbar-logo img {
+    width: auto;
+    height: 40px;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-link {
+    color: var(--white);
+    font-size: 20px;
+    line-height: 1;
+    transition: color var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--accent);
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.menu-toggle {
+    width: 36px;
+    height: 28px;
+
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background: transparent;
+    cursor: pointer;
+    z-index: 20;
+}

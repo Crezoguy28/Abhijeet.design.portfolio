@@ -1,0 +1,104 @@
+/* =========================================================
+   10. EXPERIENCE
+========================================================= */
+
+.experience {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(300px, 40%) 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 200px;
+    padding-bottom: 200px;
+    /* padding-block: 100px; */
+    /* margin: 10% 0; */
+}
+
+.experience-sidebar {
+    position: relative;
+    align-self: start;
+    height: fit-content;
+    z-index: 2;
+    will-change: transform;
+}
+
+.experience-section-title {
+    margin-bottom: 60px;
+}
+
+.experience-intro {
+    max-width: 520px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.experience-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 140px;
+}
+
+.experience-card {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.company-header {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.company-logo {
+    width: fit-content;
+}
+
+.company-logo img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+
+.company-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.company-name {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    color: var(--accent);
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.company-divider {
+    color: var(--muted-dark);
+    font-family: "Satoshi", sans-serif;
+}
+
+.company-period {
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.experience-title {
+    color: var(--muted);
+    font-size: clamp(36px, 3vw, 52px);
+    line-height: 1.05;
+}
+
+.experience-description {
+    max-width: 720px;
+}

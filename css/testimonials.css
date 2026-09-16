@@ -1,0 +1,104 @@
+/* =========================================================
+   11. TESTIMONIALS
+========================================================= */
+
+.testimonials {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 0;
+    padding-bottom: 240px;
+}
+
+.testimonials-header {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+
+    pointer-events: none;
+}
+
+.testimonials-title {
+    text-align: center;
+}
+
+.testimonial-card {
+    position: absolute;
+    top: 180px;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    min-height: 420px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+    padding: 60px;
+
+    border: 1px solid var(--accent-dark);
+    border-radius: var(--radius-lg);
+
+    background: var(--surface);
+    box-shadow: inset 0 0 20px rgba(255, 106, 58, 0.1);
+
+    transform-origin: 50% 0%;
+    will-change: transform;
+}
+
+.testimonial-card-one {
+    z-index: 1;
+}
+
+.testimonial-card-two {
+    z-index: 2;
+}
+
+.testimonial-card-three {
+    z-index: 3;
+}
+
+.testimonial-content {
+    max-width: 850px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+
+    text-align: center;
+}
+
+.testimonial-title {
+    font-size: clamp(32px, 3vw, 52px);
+}
+
+.testimonial-quote {
+    max-width: 760px;
+    font-size: clamp(20px, 2vw, 28px);
+    line-height: 1.45;
+    color: var(--white);
+}
+
+.testimonial-quote-icon {
+    position: absolute;
+    left: 80px;
+    top: -24px;
+
+    width: 48px;
+    height: 48px;
+
+    object-fit: contain;
+}
+
+.testimonial-button {
+    min-width: 220px;
+}
