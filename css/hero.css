@@ -1,109 +1,825 @@
 /* =========================================================
    HERO
-   Desktop Hero styles
+   Fluid responsive particle composition
 ========================================================= */
 
 .hero {
     position: relative;
-    min-height: 100svh;
+
+    width: 100%;
+
+    min-height: 90svh;
+
     overflow: hidden;
+
+    isolation: isolate;
 }
 
+
+/* =========================================================
+   PARTICLE CANVAS
+========================================================= */
+
 #canvas1 {
+
     position: absolute;
-    inset: 0;
+
+    width: auto;
+    height: 100%;
+
     display: block;
-    width: 100%;
-    height: auto;
-    cursor: crosshair;
-    touch-action: none;
+
     z-index: 5;
+
+    pointer-events: none;
+
+    touch-action: none;
 }
+
 
 #image1 {
     display: none;
 }
 
+
+/* =========================================================
+   HERO HEADING
+========================================================= */
+
 .hero-heading {
+
     position: absolute;
-    top: 25%;
+
+    top:
+        clamp(
+            17%,
+            21vh,
+            24%
+        );
+
     left: 0;
     right: 0;
+
+    width: 100%;
+
+    padding-inline:
+        clamp(
+            20px,
+            3vw,
+            50px
+        );
+
+    z-index: 3;
+
+    pointer-events: none;
 }
+
+
+/* =========================================================
+   HELLO I'M
+========================================================= */
 
 #hero-eyebrow {
+
+    display: block;
+
     color: var(--muted);
-    font-family: "Basement", sans-serif;
-    font-size: 36px;
+
+    font-family:
+        "Basement",
+        sans-serif;
+
     font-weight: 900;
+
+    font-size:
+        clamp(
+            24px,
+            2.25vw,
+            36px
+        );
+
+    line-height: 1;
+
+    overflow: visible;
 }
+
+
+/* =========================================================
+   PRODUCT / DESIGNER
+========================================================= */
 
 .hero-heading-text {
-    display: flex;
-    justify-content: space-between;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
     align-items: center;
+
+    width: 100%;
+
+    margin-top:
+        clamp(
+            28px,
+            3vw,
+            46px
+        );
+
+    gap:
+        clamp(
+            20px,
+            3vw,
+            60px
+        );
 }
+
 
 .hero-heading h1 {
+
+    display: block;
+
+    width: 100%;
+
     margin: 0;
 
+    padding-top: 0.08em;
+
+    padding-bottom: 0.06em;
+
+    overflow: visible;
+
     color: transparent;
-    background: var(--text-gradient);
-    -webkit-background-clip: text;
+
+    background:
+        var(--text-gradient);
+
     background-clip: text;
+
+    -webkit-background-clip: text;
+
     -webkit-text-fill-color: transparent;
 
-    font-size: clamp(72px, 9vw, 130px);
-    letter-spacing: -0.04em;
+    font-family:
+        "Basement",
+        sans-serif;
+
+    font-weight: 900;
+
+    font-size:
+        clamp(
+            76px,
+            7.7vw,
+            150px
+        );
+
+    line-height: 0.9;
+
+    letter-spacing: -0.045em;
+
+    white-space: nowrap;
+
+    will-change:
+        transform,
+        opacity,
+        filter;
 }
+
+
+/* Product */
+
+.hero-heading h1:first-child {
+    text-align: left;
+}
+
+
+/* Designer */
+
+.hero-heading h1:last-child {
+    text-align: right;
+}
+
+
+/* =========================================================
+   CREZOGUY
+========================================================= */
 
 .hero-background-word,
 .hero-outline-word {
+
     position: absolute;
-    inset-inline: 0;
+
+    left: 0;
+    right: 0;
+
+    width: 100%;
 
     display: flex;
+
     justify-content: center;
+
+    align-items: flex-end;
 
     pointer-events: none;
 
-    bottom: 10%;
-    font-size: 90px;
-    max-width: 100%;
+    overflow: visible;
+
+    white-space: nowrap;
 }
+
+
+/* ---------------------------------------------------------
+   Filled layer
+--------------------------------------------------------- */
 
 .hero-background-word {
-    z-index: 0;
+
+    bottom: 0;
+
+    z-index: 4;
 }
+
+
+/* ---------------------------------------------------------
+   Outline layer
+--------------------------------------------------------- */
+
+.hero-outline-word {
+
+    bottom: 0;
+
+    z-index: 7;
+}
+
+
+/* ---------------------------------------------------------
+   Word
+--------------------------------------------------------- */
 
 .hero-word {
+
+    margin: 0;
+
+    padding: 0;
+
+    font-family:
+        "Basement",
+        sans-serif;
+
+    font-weight: 900;
+
     line-height: 0.8;
+
+    letter-spacing: -0.055em;
+
+    white-space: nowrap;
+
+    overflow: visible;
 }
+
+
+/* ---------------------------------------------------------
+   Filled
+--------------------------------------------------------- */
 
 .hero-word-filled {
+
     color: var(--accent);
+
+    font-size:
+        clamp(
+            100px,
+            9vw,
+            160px
+        );
 }
 
+
+/* ---------------------------------------------------------
+   Outline
+--------------------------------------------------------- */
+
 .hero-word-outline {
+
     position: absolute;
+
     bottom: 0;
 
     color: transparent;
-    -webkit-text-stroke: 2px var(--accent);
 
-    opacity: 0.25;
-    z-index: 10;
+    -webkit-text-stroke:
+        clamp(
+            1px,
+            0.12vw,
+            2px
+        )
+        var(--accent);
+
+    opacity: 0.35;
+
+    font-size:
+        clamp(
+            100px,
+            9vw,
+            160px
+        );
 }
+
+
+/* =========================================================
+   BACKGROUND LOGO
+========================================================= */
 
 .hero-logo {
-    position: relative;
-    z-index: 1;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 100%;
 
     display: flex;
+
+    align-items: center;
+
     justify-content: center;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    pointer-events: none;
+
+    z-index: 1;
 }
 
+
 .hero-logo img {
-    max-width: 400px;
-    opacity: 0.05;
+
+    width:
+        min(
+            360px,
+            23vw
+        );
+
+    max-width: 360px;
+
+    opacity: 0.045;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media
+(max-width: 1100px)
+and
+(min-width: 768px) {
+
+    .hero-heading {
+
+        top: 17%;
+    }
+
+
+    .hero-heading h1 {
+
+        font-size:
+            clamp(
+                64px,
+                8vw,
+                105px
+            );
+    }
+
+
+    .hero-word-filled,
+    .hero-word-outline {
+
+        font-size:
+            clamp(
+                85px,
+                10vw,
+                125px
+            );
+    }
+
+
+    .hero-logo img {
+
+        width:
+            min(
+                280px,
+                32vw
+            );
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .hero {
+        
+        min-height: 100svh;
+
+        height: 100svh;
+
+        width: 100%;
+
+        overflow: hidden;
+    }
+
+
+    /* -----------------------------------------------------
+       CANVAS
+
+       Keep it exactly inside the viewport.
+       No 5% offset — that was contributing to composition
+       drift on small screens.
+    ----------------------------------------------------- */
+
+    #canvas1 {
+
+        position: absolute;
+
+        inset: 0;
+
+        width: 100%;
+
+        height: 100%;
+
+        left: 0;
+
+        top: 50px;
+        z-index: 5;
+    }
+
+
+    /* -----------------------------------------------------
+       HEADING
+    ----------------------------------------------------- */
+
+    .hero-heading {
+
+        top: 8%;
+
+        left: 0;
+
+        right: 0;
+
+        padding-inline: 16px;
+
+        z-index: 3;
+        
+        text-align: left;
+    }
+
+
+    #hero-eyebrow {
+
+        font-size:
+            clamp(
+                18px,
+                5.5vw,
+                24px
+            );
+
+        line-height: 1;
+
+        text-align: left;
+    }
+
+
+    .hero-heading-text {
+
+        grid-template-columns: 1fr;
+
+        gap: 4px;
+
+        margin-top:
+            clamp(
+                25px,
+                7vw,
+                38px
+            );
+    }
+
+
+    .hero-heading h1 {
+
+        width: 100%;
+
+        font-size:
+            clamp(
+                48px,
+                14vw,
+                68px
+            );
+
+        line-height: 0.86;
+
+        letter-spacing: -0.05em;
+
+        text-align: left !important;
+
+        padding-top: 0.08em;
+
+        padding-bottom: 0.08em;
+    }
+
+
+    /* =====================================================
+       CREZOGUY — MOBILE
+       
+       Target:
+       - fully visible
+       - centered
+       - approximately 10% above the bottom
+       - overlaps the lower portion of the character
+       - sits above the particle canvas
+    ===================================================== */
+
+    .hero-background-word,
+    .hero-outline-word {
+
+        left: 0;
+
+        right: 0;
+
+        width: 100%;
+
+        bottom: 30%;
+
+        z-index: 3;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        overflow: visible;
+
+        transform: none;
+    }
+
+
+    .hero-outline-word {
+
+        z-index: 7;
+        bottom: 30%;
+    }
+
+
+    .hero-word {
+
+        display: block;
+
+        width: max-content;
+
+        max-width: none;
+
+        margin: 0;
+
+        padding: 0;
+
+        white-space: nowrap;
+
+        line-height: 0.78;
+
+        letter-spacing: -0.065em;
+
+        transform: none;
+    }
+
+
+    .hero-word-filled,
+    .hero-word-outline {
+
+        font-size:
+            clamp(
+                52px,
+                15.2vw,
+                68px
+            );
+    }
+
+
+    .hero-word-outline {
+
+        bottom: 30%;
+
+        -webkit-text-stroke:
+            1px
+            var(--accent);
+    }
+
+
+    /* -----------------------------------------------------
+       BACKGROUND LOGO
+    ----------------------------------------------------- */
+
+    .hero-logo {
+
+        top: 52%;
+
+        z-index: 1;
+    }
+
+
+    .hero-logo img {
+
+        width:
+            min(
+                300px,
+                60vw
+            );
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .hero-heading {
+
+        top: 7%;
+    }
+
+
+    #hero-eyebrow {
+
+        font-size:
+            clamp(
+                17px,
+                5.2vw,
+                22px
+            );
+    }
+
+
+    .hero-heading-text {
+
+        margin-top:
+            clamp(
+                24px,
+                7vw,
+                34px
+            );
+    }
+
+
+    .hero-heading h1 {
+
+        font-size:
+            clamp(
+                44px,
+                13.5vw,
+                58px
+            );
+
+        line-height: 0.88;
+    }
+
+
+    /* -----------------------------------------
+       CREZOGUY
+    ----------------------------------------- */
+
+    .hero-background-word,
+    .hero-outline-word {
+
+        bottom: 10%;
+    }
+
+
+    .hero-word-filled,
+    .hero-word-outline {
+
+        font-size:
+            clamp(
+                50px,
+                15vw,
+                62px
+            );
+    }
+
+
+    .hero-logo img {
+
+        width: 48vw;
+    }
+}
+
+
+/* =========================================================
+   375px AND BELOW
+========================================================= */
+
+@media (max-width: 375px) {
+
+    .hero-heading {
+
+        top: 6.5%;
+    }
+
+
+    #hero-eyebrow {
+
+        font-size: 17px;
+    }
+
+
+    .hero-heading-text {
+
+        margin-top: 23px;
+    }
+
+
+    .hero-heading h1 {
+
+        font-size: 47px;
+
+        line-height: 0.88;
+    }
+
+
+    .hero-background-word,
+    .hero-outline-word {
+
+        bottom: 15%;
+    }
+
+
+    .hero-word-filled,
+    .hero-word-outline {
+
+        /*
+         * Small enough to stay completely inside
+         * a 375px viewport.
+         */
+        font-size: 54px;
+
+        letter-spacing: -0.07em;
+    }
+
+
+    .hero-logo img {
+
+        width: 46vw;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .hero-heading h1 {
+
+        font-size: 44px;
+    }
+
+
+    .hero-word-filled,
+    .hero-word-outline {
+
+        font-size: 51px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero *,
+    .hero *::before,
+    .hero *::after {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+    }
 }

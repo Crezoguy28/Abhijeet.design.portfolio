@@ -1,62 +1,446 @@
 /* =========================================================
    NAVBAR
-   Desktop navigation styling
+   Responsive:
+   Desktop  : 1920 → 1536
+   Laptop   : 1440 → 1366
+   Tablet   : 1024 → 768
+   Mobile   : 600 → 375
+========================================================= */
+
+
+/* =========================================================
+   01. HEADER
 ========================================================= */
 
 .site-header {
+    position: relative;
+
     width: 100%;
+
+    z-index: 10000;
 }
 
+
+/* =========================================================
+   02. NAVBAR
+========================================================= */
+
 .navbar {
-    min-height: 80px;
+    min-height: clamp(72px, 5vw, 88px);
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 40px;
+
+    gap: clamp(24px, 3vw, 48px);
+
+    /*
+        IMPORTANT:
+        Container controls horizontal spacing.
+        Navbar adds NO horizontal padding.
+    */
+    padding-inline: 0;
 }
 
+
+/* =========================================================
+   03. LOGO
+========================================================= */
+
 .navbar-logo {
-    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+
+    flex: 0 0 auto;
+
+    min-width: 0;
 }
 
 .navbar-logo img {
+    display: block;
+
     width: auto;
-    height: 40px;
+    height: clamp(34px, 2.5vw, 40px);
+
+    max-width: 100%;
+
+    object-fit: contain;
 }
+
+
+/* =========================================================
+   04. DESKTOP NAVIGATION
+========================================================= */
 
 .navbar-links {
     display: flex;
     align-items: center;
-    gap: 40px;
+
+    gap: clamp(24px, 2.1vw, 40px);
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.navbar-links li {
+    margin: 0;
+    padding: 0;
 }
 
 .nav-link {
+    display: inline-flex;
+    align-items: center;
+
     color: var(--white);
-    font-size: 20px;
+
+    font-size: clamp(17px, 1.04vw, 20px);
     line-height: 1;
-    transition: color var(--transition);
+
+    white-space: nowrap;
+
+    transition:
+        color var(--transition),
+        opacity var(--transition);
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link:focus-visible {
     color: var(--accent);
 }
+
+
+/* =========================================================
+   05. NAV ACTIONS
+========================================================= */
 
 .navbar-actions {
     display: flex;
     align-items: center;
-    gap: 20px;
+
+    flex: 0 0 auto;
+
+    gap: clamp(14px, 1.2vw, 20px);
 }
 
+.navbar-actions .button {
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   06. HAMBURGER
+========================================================= */
+
 .menu-toggle {
-    width: 36px;
-    height: 28px;
+    position: relative;
 
     display: none;
-    flex-direction: column;
-    justify-content: space-between;
+
+    width: 48px;
+    height: 48px;
+
+    flex: 0 0 48px;
+
+    padding: 0;
+    margin: 0;
+
+    border: 0;
+    outline: none;
 
     background: transparent;
+
     cursor: pointer;
-    z-index: 20;
+
+    z-index: 10001;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* Hamburger lines */
+
+.menu-toggle::before,
+.menu-toggle::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    width: 28px;
+    height: 2px;
+
+    background: var(--white);
+
+    transform: translateX(-50%);
+
+    transition:
+        top 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        bottom 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menu-toggle::before {
+    top: 15px;
+}
+
+.menu-toggle::after {
+    bottom: 15px;
+}
+
+
+/* =========================================================
+   07. FOCUS
+========================================================= */
+
+.menu-toggle:focus-visible {
+    outline: 1px solid rgba(255, 255, 255, 0.7);
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   08. TABLET + MOBILE
+   <=1100px
+
+   Desktop navigation changes to hamburger before
+   the layout becomes cramped.
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .navbar {
+        min-height: 76px;
+    }
+
+    /*
+        Full-screen mobile/tablet navigation.
+    */
+
+    .navbar-links {
+        position: fixed;
+
+        inset: 0;
+
+        width: 100%;
+        height: 100dvh;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: clamp(22px, 4vw, 32px);
+
+        padding:
+            100px
+            24px
+            48px;
+
+        background: var(--bg);
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transform: translateY(-16px);
+
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        overscroll-behavior: contain;
+
+        transition:
+            opacity 0.4s ease,
+            visibility 0.4s ease,
+            transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+        z-index: 9999;
+    }
+
+    .navbar-links.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+
+        transform: translateY(0);
+    }
+
+    .nav-link {
+        display: inline-flex;
+
+        color: var(--white);
+
+        font-size: clamp(24px, 4vw, 32px);
+        line-height: 1.15;
+
+        white-space: normal;
+
+        text-align: center;
+    }
+
+    /*
+        Hire Me is desktop-only.
+    */
+
+    .navbar-actions .button {
+        display: none;
+    }
+
+    /*
+        Hamburger becomes visible.
+    */
+
+    .menu-toggle {
+        display: block;
+    }
+
+
+    /* -----------------------------------------------------
+       HAMBURGER → CLOSE
+    ----------------------------------------------------- */
+
+    .menu-toggle[aria-expanded="true"]::before {
+        top: 23px;
+
+        transform:
+            translateX(-50%)
+            rotate(45deg);
+    }
+
+    .menu-toggle[aria-expanded="true"]::after {
+        bottom: 23px;
+
+        transform:
+            translateX(-50%)
+            rotate(-45deg);
+    }
+}
+
+
+/* =========================================================
+   09. TABLET
+   768px → 1024px
+========================================================= */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .navbar {
+        min-height: 80px;
+    }
+
+    .navbar-logo img {
+        height: 38px;
+    }
+}
+
+
+/* =========================================================
+   10. MOBILE
+   <=767px
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .navbar {
+        min-height: 70px;
+
+        gap: 16px;
+    }
+
+    .navbar-logo img {
+        height: clamp(30px, 8vw, 36px);
+
+        max-width: 160px;
+    }
+
+    .menu-toggle {
+        width: 48px;
+        height: 48px;
+
+        flex-basis: 48px;
+    }
+
+    .menu-toggle::before,
+    .menu-toggle::after {
+        width: 24px;
+    }
+
+    .menu-toggle::before {
+        top: 16px;
+    }
+
+    .menu-toggle::after {
+        bottom: 16px;
+    }
+
+    .menu-toggle[aria-expanded="true"]::before {
+        top: 23px;
+    }
+
+    .menu-toggle[aria-expanded="true"]::after {
+        bottom: 23px;
+    }
+
+    .navbar-links {
+        padding-inline: 24px;
+    }
+
+    .nav-link {
+        font-size: clamp(22px, 6vw, 28px);
+    }
+}
+
+
+/* =========================================================
+   11. SMALL MOBILE
+   <=375px
+========================================================= */
+
+@media (max-width: 375px) {
+
+    .navbar {
+        min-height: 68px;
+    }
+
+    .navbar-logo img {
+        height: 32px;
+
+        max-width: 145px;
+    }
+
+    .navbar-links {
+        gap: 20px;
+    }
+
+    .nav-link {
+        font-size: 23px;
+    }
+}
+
+
+/* =========================================================
+   12. REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .navbar-links,
+    .menu-toggle::before,
+    .menu-toggle::after,
+    .nav-link {
+        transition: none;
+    }
+}
+
+
+/* =========================================================
+   13. MOBILE MENU SCROLL LOCK
+========================================================= */
+
+body.menu-open {
+    overflow: hidden;
 }

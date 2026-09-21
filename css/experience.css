@@ -10,8 +10,6 @@
     align-items: start;
     margin-top: 200px;
     padding-bottom: 200px;
-    /* padding-block: 100px; */
-    /* margin: 10% 0; */
 }
 
 .experience-sidebar {
@@ -28,7 +26,6 @@
 
 .experience-intro {
     max-width: 520px;
-
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -36,9 +33,13 @@
 
 .experience-list {
     position: relative;
+
     display: flex;
     flex-direction: column;
+
     gap: 140px;
+
+    min-width: 0;
 }
 
 .experience-card {
@@ -46,7 +47,10 @@
 
     display: flex;
     flex-direction: column;
+
     gap: 28px;
+
+    min-width: 0;
 }
 
 .company-header {
@@ -101,4 +105,180 @@
 
 .experience-description {
     max-width: 720px;
+}
+
+
+/* =========================================================
+   LAPTOP / SMALL DESKTOP
+   1025px — 1535px
+========================================================= */
+
+@media (min-width: 1025px) and (max-width: 1535px) {
+
+    .experience {
+        grid-template-columns:
+            minmax(280px, 40%)
+            minmax(0, 1fr);
+
+        gap: clamp(40px, 5vw, 80px);
+    }
+
+    .experience-title {
+        font-size: clamp(34px, 3vw, 48px);
+    }
+
+    .experience-description {
+        max-width: 100%;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   <=1024px
+
+   Sticky/pinned sidebar OFF.
+========================================================= */
+
+@media (max-width: 1024px) {
+
+    .experience {
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+
+        margin-top: 100px;
+
+        padding-bottom: 120px;
+    }
+
+    .experience-sidebar {
+        position: relative;
+
+        width: 100%;
+
+        height: auto;
+    }
+
+    .experience-intro {
+        max-width: 720px;
+    }
+
+    .experience-list {
+        width: 100%;
+
+        gap: 90px;
+    }
+
+    .experience-card {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   <=768px
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .experience {
+        gap: 40px;
+
+        margin-top: 60px;
+
+        padding-bottom: 60px;
+    }
+
+    .experience-section-title {
+        margin-bottom: 30px;
+    }
+
+    .experience-list {
+        gap: 60px;
+    }
+
+    .company-logo img {
+        height: 40px;
+    }
+
+    .experience-title {
+        font-size: clamp(
+            32px,
+            8vw,
+            42px
+        );
+    }
+
+    .experience-description {
+        max-width: 100%;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   <=430px
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .experience {
+        margin-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .experience-list {
+        gap: 60px;
+    }
+
+    .company-name {
+        font-size: 22px;
+    }
+
+    .company-period {
+        font-size: 16px;
+    }
+
+    .experience-title {
+        font-size: clamp(
+            30px,
+            8vw,
+            38px
+        );
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   <=375px
+========================================================= */
+
+@media (max-width: 375px) {
+
+    .experience {
+        margin-top: 45px;
+    }
+
+    .experience-list {
+        gap: 50px;
+    }
+
+    .company-logo img {
+        height: 36px;
+    }
+
+    .company-name {
+        font-size: 20px;
+    }
+
+    .company-period {
+        font-size: 15px;
+    }
+
+    .experience-title {
+        font-size: 30px;
+    }
 }

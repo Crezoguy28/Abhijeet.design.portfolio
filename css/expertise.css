@@ -1,34 +1,73 @@
 /* =========================================================
-   EXPERTISE SECTION
+   AREA OF EXPERTISE
+   Responsive device showcase
+
+   DESKTOP  > 1024px
+   → existing cinematic GSAP layout
+
+   TABLET   <= 1024px
+   → static responsive layout + pop reveal
+
+   MOBILE   <= 767px
+   → vertical device stack + pop reveal
+========================================================= */
+
+
+/* =========================================================
+   SECTION
 ========================================================= */
 
 .expertise {
     position: relative;
+
+    width: 100%;
+
     overflow: hidden;
+
     isolation: isolate;
+
+    padding-block: clamp(
+        100px,
+        10vw,
+        180px
+    );
 }
 
 
 /* =========================================================
-   EXPERTISE TITLE
+   HEADER
 ========================================================= */
 
-.expertise-title {
-    position: absolute;
+.expertise-header {
+    position: relative;
 
-    top: 5%;
-    left: 50%;
+    width: 100%;
+
+    margin-bottom: 60px;
+
+    z-index: 2;
+}
+
+.expertise-title {
+    position: relative;
+
+    width: 100%;
 
     margin: 0;
 
-    transform: translateX(-50%);
-
-    width: max-content;
-
-    z-index: 2;
-    pointer-events: none;
-
     text-align: center;
+
+    color: #AAAAAA;
+
+    font-size: clamp(
+        42px,
+        5vw,
+        72px
+    );
+
+    line-height: 0.95;
+
+    pointer-events: none;
 }
 
 
@@ -40,9 +79,17 @@
     position: relative;
 
     width: 100%;
+
     height: 100vh;
 
+    min-height: 700px;
+
     overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -57,12 +104,14 @@
     left: 50%;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     will-change: transform, opacity;
 
     transform-style: preserve-3d;
+
     backface-visibility: hidden;
 }
 
@@ -75,7 +124,9 @@
     max-width: none;
 
     user-select: none;
+
     -webkit-user-drag: none;
+
     pointer-events: none;
 
     backface-visibility: hidden;
@@ -83,32 +134,449 @@
 
 
 /* =========================================================
-   LEFT TABLET
+   LEFT DEVICE
 ========================================================= */
 
 .expertise-device:nth-child(1) {
-    width: min(40vw, 500px);
+    width: min(
+        40vw,
+        500px
+    );
+
     z-index: 4;
 }
 
 
 /* =========================================================
-   PHONE
+   CENTER PHONE
 ========================================================= */
 
 .expertise-device:nth-child(2) {
-    width: min(21vw, 340px);
+    width: min(
+        21vw,
+        340px
+    );
+
     z-index: 10;
 }
 
 
 /* =========================================================
-   RIGHT TABLET
+   RIGHT DEVICE
 ========================================================= */
 
 .expertise-device:nth-child(3) {
-    width: min(40vw, 500px);
+    width: min(
+        40vw,
+        500px
+    );
+
     z-index: 4;
+}
+
+
+/* =========================================================
+   DESKTOP
+   >= 1025px
+
+   GSAP owns positioning.
+========================================================= */
+
+@media (min-width: 1025px) {
+
+    .expertise {
+        min-height: 100vh;
+
+        padding-block: 0;
+    }
+
+    .expertise-header {
+        position: absolute;
+
+        top: 6%;
+
+        left: 0;
+        right: 0;
+
+        margin: 0;
+    }
+
+    .expertise-visuals {
+        height: 100vh;
+
+        min-height: 700px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   768px → 1024px
+
+   NO PINNED GSAP ANIMATION.
+========================================================= */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .expertise {
+        padding-block: 100px 120px;
+    }
+
+    .expertise-header {
+        margin-bottom: 60px;
+    }
+
+    .expertise-title {
+        font-size: clamp(
+            40px,
+            6vw,
+            58px
+        );
+    }
+
+    .expertise-visuals {
+
+        height: auto;
+        min-height: 0;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        align-items: end;
+
+        gap: clamp(
+            12px,
+            3vw,
+            32px
+        );
+
+        overflow: visible;
+    }
+
+
+    /* -----------------------------------------
+       RESET DESKTOP POSITIONING
+    ----------------------------------------- */
+
+    .expertise-device {
+        position: relative;
+
+        top: auto;
+        left: auto;
+
+        width: 100% !important;
+
+        transform:
+            translateY(45px)
+            scale(0.94);
+
+        opacity: 0;
+
+        transition:
+            opacity 0.75s cubic-bezier(
+                0.22,
+                1,
+                0.36,
+                1
+            ),
+            transform 0.8s cubic-bezier(
+                0.22,
+                1,
+                0.36,
+                1
+            );
+    }
+
+    .expertise-device.is-visible {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+
+    /* -----------------------------------------
+       Device sizing
+    ----------------------------------------- */
+
+    .expertise-device:nth-child(1) {
+        width: min(
+            30vw,
+            310px
+        ) !important;
+
+        justify-self: end;
+    }
+
+    .expertise-device:nth-child(2) {
+        width: min(
+            22vw,
+            220px
+        ) !important;
+
+        justify-self: center;
+    }
+
+    .expertise-device:nth-child(3) {
+        width: min(
+            30vw,
+            310px
+        ) !important;
+
+        justify-self: start;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   <= 767px
+
+   VERTICAL STACK
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .expertise {
+        padding-block: 72px 90px;
+    }
+
+
+    /* -----------------------------------------
+       TITLE
+    ----------------------------------------- */
+
+    .expertise-header {
+        margin-bottom: 42px;
+    }
+
+    .expertise-title {
+        font-size: clamp(
+            34px,
+            10vw,
+            44px
+        );
+
+        text-align: left;
+
+        line-height: 0.95;
+    }
+
+
+    /* -----------------------------------------
+       STAGE
+    ----------------------------------------- */
+
+    .expertise-visuals {
+
+        height: auto;
+        min-height: 0;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: flex-start;
+
+        gap: 34px;
+
+        overflow: visible;
+    }
+
+
+    /* -----------------------------------------
+       DEVICES
+
+       IMPORTANT:
+       Completely reset GSAP positioning.
+    ----------------------------------------- */
+
+    .expertise-device {
+
+        position: relative;
+
+        top: auto;
+        left: auto;
+
+        width: 100% !important;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        transform:
+            translateY(40px)
+            scale(0.94);
+
+        opacity: 0;
+
+        transition:
+            opacity 0.65s cubic-bezier(
+                0.22,
+                1,
+                0.36,
+                1
+            ),
+            transform 0.75s cubic-bezier(
+                0.22,
+                1,
+                0.36,
+                1
+            );
+
+        z-index: auto !important;
+    }
+
+
+    .expertise-device.is-visible {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+
+    /* -----------------------------------------
+       LEFT DEVICE
+    ----------------------------------------- */
+
+    .expertise-device:nth-child(1) {
+
+        width: 92% !important;
+
+        max-width: 360px;
+    }
+
+
+    /* -----------------------------------------
+       PHONE
+    ----------------------------------------- */
+
+    .expertise-device:nth-child(2) {
+
+        width: 58% !important;
+
+        max-width: 230px;
+    }
+
+
+    /* -----------------------------------------
+       RIGHT DEVICE
+    ----------------------------------------- */
+
+    .expertise-device:nth-child(3) {
+
+        width: 92% !important;
+
+        max-width: 360px;
+    }
+
+
+    /* -----------------------------------------
+       STAGGER
+    ----------------------------------------- */
+
+    .expertise-device:nth-child(1) {
+        transition-delay: 0ms;
+    }
+
+    .expertise-device:nth-child(2) {
+        transition-delay: 100ms;
+    }
+
+    .expertise-device:nth-child(3) {
+        transition-delay: 200ms;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   <= 430px
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .expertise {
+        padding-block: 64px 80px;
+    }
+
+    .expertise-header {
+        margin-bottom: 34px;
+    }
+
+    .expertise-title {
+        font-size: 36px;
+    }
+
+    .expertise-visuals {
+        gap: 28px;
+    }
+
+    .expertise-device:nth-child(1),
+    .expertise-device:nth-child(3) {
+        width: 100% !important;
+
+        max-width: 344px;
+    }
+
+    .expertise-device:nth-child(2) {
+        width: 56% !important;
+
+        max-width: 215px;
+    }
+}
+
+
+/* =========================================================
+   390px
+========================================================= */
+
+@media (max-width: 390px) {
+
+    .expertise-title {
+        font-size: 34px;
+    }
+
+    .expertise-visuals {
+        gap: 26px;
+    }
+
+    .expertise-device:nth-child(2) {
+        width: 55% !important;
+    }
+}
+
+
+/* =========================================================
+   375px
+========================================================= */
+
+@media (max-width: 375px) {
+
+    .expertise {
+        padding-block: 58px 72px;
+    }
+
+    .expertise-title {
+        font-size: 32px;
+    }
+
+    .expertise-visuals {
+        gap: 24px;
+    }
+
+    .expertise-device:nth-child(2) {
+        width: 54% !important;
+    }
 }
 
 
@@ -118,9 +586,14 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-    .expertise-title,
     .expertise-device {
+
+        opacity: 1;
+
+        transform: none;
+
+        transition: none;
+
         will-change: auto;
     }
-
 }

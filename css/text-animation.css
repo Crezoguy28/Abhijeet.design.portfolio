@@ -7,6 +7,16 @@
     display: inline-block;
 }
 
+.text-reveal,
+.section-title {
+    display: inline-block;
+}
+
+.text-reveal-word {
+    display: inline-block;
+    white-space: nowrap;
+}
+
 .text-reveal-char {
     display: inline-block;
     font-family: inherit;
@@ -15,8 +25,19 @@
 }
 #about-title{
     text-align: left;
-    font-size: 80px;
+    font-size: clamp(40px, 5.5vw, 80px);
 }
+
+/* =========================================================
+   HERO TEXT — LOAD REVEAL
+========================================================= */
+
+.hero-text-char {
+    display: inline-block;
+    will-change: transform, opacity, filter;
+    transform: translateZ(0);
+}
+
 
 /* =========================================================
    SECTION TITLE REVEAL

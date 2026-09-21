@@ -3,6 +3,7 @@
    Global variables, fonts, reset, typography and layout
 ========================================================= */
 
+
 /* =========================================================
    01. VARIABLES
 ========================================================= */
@@ -13,23 +14,29 @@
     --bg: #060913;
     --surface: #0A0E19;
     --border: #121828;
+
     --white: #FFFFFF;
     --text: #C3D0DE;
+
     --muted: #808080;
     --muted-dark: #5F5F5F;
 
     --accent: #FF6A3A;
     --accent-dark: #994023;
 
-    --accent-gradient: linear-gradient(96.14deg,
-            #FF6A3A 6.95%,
-            #994023 97.18%);
+    --accent-gradient: linear-gradient(
+        96.14deg,
+        #FF6A3A 6.95%,
+        #994023 97.18%
+    );
 
-    --text-gradient: linear-gradient(180.41deg,
-            #FFFFFF -40.42%,
-            rgba(32, 34, 39, 0) 128.9%);
+    --text-gradient: linear-gradient(
+        180.41deg,
+        #FFFFFF -40.42%,
+        rgba(32, 34, 39, 0) 128.9%
+    );
 
-    --container: 1600px;
+    --container: 1800px;
 
     --radius-lg: 40px;
     --radius-pill: 999px;
@@ -44,7 +51,9 @@
 
 @font-face {
     font-family: "Basement";
-    src: url("../fonts/BasementGrotesque-Black_v1.202.otf") format("opentype");
+    src: url("../fonts/BasementGrotesque-Black_v1.202.otf")
+        format("opentype");
+
     font-weight: 900;
     font-style: normal;
     font-display: swap;
@@ -52,7 +61,9 @@
 
 @font-face {
     font-family: "Satoshi";
-    src: url("../fonts/Satoshi-Regular.otf") format("opentype");
+    src: url("../fonts/Satoshi-Regular.otf")
+        format("opentype");
+
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -60,7 +71,9 @@
 
 @font-face {
     font-family: "Satoshi";
-    src: url("../fonts/Satoshi-Medium.otf") format("opentype");
+    src: url("../fonts/Satoshi-Medium.otf")
+        format("opentype");
+
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -68,7 +81,9 @@
 
 @font-face {
     font-family: "Satoshi";
-    src: url("../fonts/Satoshi-Bold.otf") format("opentype");
+    src: url("../fonts/Satoshi-Bold.otf")
+        format("opentype");
+
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -89,6 +104,7 @@
 
 html {
     background: var(--bg);
+    min-height: 100%;
 }
 
 html,
@@ -98,6 +114,7 @@ body {
 
 body {
     background: var(--bg);
+    overflow-x: clip;
 }
 
 img {
@@ -107,7 +124,9 @@ img {
 }
 
 button,
-a {
+input,
+textarea,
+select {
     font: inherit;
 }
 
@@ -181,6 +200,7 @@ blockquote {
 .case-description,
 .experience-description {
     color: var(--muted);
+
     font-size: 20px;
     line-height: 1.6;
 }
@@ -189,36 +209,122 @@ blockquote {
     color: var(--accent);
 }
 
+
+/* =========================================================
+   06. SECTION TITLES
+========================================================= */
+
 .section-title {
-    color: #aaaaaa;
-    font-size: 64px;
+    color: #AAAAAA;
+
+    font-size: clamp(40px, 4.5vw, 64px);
 }
 
 .section-title1 {
     color: transparent;
-    -webkit-background-clip: text;
+
+    background: var(--text-gradient);
     background-clip: text;
+    -webkit-background-clip: text;
+
     -webkit-text-fill-color: transparent;
+
     font-size: 64px;
 }
 
 .content-title {
     color: var(--muted);
-    font-size: 36px;
+
+    font-size: clamp(28px, 2.6vw, 36px);
     line-height: 1.15;
 }
 
 
 /* =========================================================
-   06. GLOBAL LAYOUT
+   07. GLOBAL CONTAINER
 ========================================================= */
 
+/*
+    DESIGN SYSTEM
+
+    1920px viewport → 1800px container → 60px side gutter
+    1728px viewport → 1600px container → 64px side gutter
+
+    Between 1728 and 1920 the container interpolates smoothly.
+
+    Mobile:
+    440px viewport → 392px content → 24px side gutter
+*/
+
 .container {
-    width: min(100% - 200px, var(--container));
+    width: calc(100% - 48px);
+
+    max-width: var(--container);
+
     margin-inline: auto;
 }
 
-.section {
-    width: 100%;
-    position: relative;
+
+/* =========================================================
+   LARGE DESKTOP CONTAINER
+   1728px → 1920px+
+========================================================= */
+
+@media (min-width: 1728px) {
+
+    .container {
+        width: min(
+            calc(
+                100% -
+                clamp(
+                    120px,
+                    calc(200px - 4.1667vw),
+                    128px
+                )
+            ),
+            var(--container)
+        );
+    }
+}
+
+
+/* =========================================================
+   DESKTOP / LAPTOP
+   768px → 1727px
+
+   64px side gutter.
+========================================================= */
+
+@media (min-width: 768px) and (max-width: 1727px) {
+
+    .container {
+        width: calc(100% - 128px);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   <=767px
+
+   24px side gutter.
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .container {
+        width: calc(100% - 48px);
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .section-title {
+        font-size: 32px;
+    }
 }

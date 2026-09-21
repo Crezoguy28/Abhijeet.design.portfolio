@@ -1,352 +1,532 @@
+/* =========================================================
+   AREA OF EXPERTISE
+
+   DESKTOP  > 1024px
+   → GSAP cinematic animation
+
+   TABLET/MOBILE <= 1024px
+   → NO GSAP PINNING
+   → lightweight viewport pop reveal
+
+   This prevents the desktop animation from running on
+   smaller screens.
+========================================================= */
+
 window.addEventListener("load", () => {
+
+    if (
+        typeof gsap === "undefined" ||
+        typeof ScrollTrigger === "undefined"
+    ) {
+        return;
+    }
+
 
     gsap.registerPlugin(ScrollTrigger);
 
 
-    /* =========================================================
-       EXPERTISE SECTION
-       Sequence:
-       1. Phone enters from bottom
-       2. Short hold
-       3. Phone shrinks
-       4. Left + right screens emerge
-       5. Micro settle
-       6. Final hold
-    ========================================================= */
+    const section =
+        document.querySelector("#expertise");
 
-    const section = document.querySelector("#expertise");
-    const devices = document.querySelectorAll(".expertise-device");
-
-    if (!section || devices.length < 3) return;
-
-    const left = devices[0];
-    const phone = devices[1];
-    const right = devices[2];
+    const devices =
+        document.querySelectorAll(
+            ".expertise-device"
+        );
 
 
-    /* =========================================================
-       RESPONSIVE VALUES
-    ========================================================= */
-
-    function getValues() {
-
-        const vw = window.innerWidth;
-
-
-        /* -------------------------
-           MOBILE
-        ------------------------- */
-
-        if (vw <= 600) {
-
-            return {
-                phoneEnterScale: 1.02,
-                phoneExitScale: 0.88,
-
-                leftX: -vw * 0.27,
-                rightX: vw * 0.27,
-
-                sideStartScale: 0.10,
-                sideEndScale: 0.78,
-
-                scrollLen: 1500
-            };
-
-        }
-
-
-        /* -------------------------
-           TABLET
-        ------------------------- */
-
-        if (vw <= 992) {
-
-            return {
-                phoneEnterScale: 1.04,
-                phoneExitScale: 0.89,
-
-                leftX: -vw * 0.28,
-                rightX: vw * 0.28,
-
-                sideStartScale: 0.10,
-                sideEndScale: 0.84,
-
-                scrollLen: 1550
-            };
-
-        }
-
-
-        /* -------------------------
-           DESKTOP
-        ------------------------- */
-
-        return {
-            phoneEnterScale: 1.05,
-            phoneExitScale: 0.90,
-
-            leftX: -vw * 0.25,
-            rightX: vw * 0.25,
-
-            sideStartScale: 0.10,
-            sideEndScale: 0.90,
-
-            scrollLen: 1450
-        };
-
+    if (
+        !section ||
+        devices.length < 3
+    ) {
+        return;
     }
 
 
-    /* =========================================================
-       BUILD ANIMATION
-    ========================================================= */
+    const left =
+        devices[0];
 
-    function build() {
+    const phone =
+        devices[1];
 
-        /* -------------------------
-           CLEAN PREVIOUS INSTANCE
-        ------------------------- */
+    const right =
+        devices[2];
 
-        ScrollTrigger.getById("expertiseST")?.kill();
+
+    /* =====================================================
+       BREAKPOINT
+    ===================================================== */
+
+    const DESKTOP_MIN_WIDTH =
+        1025;
+
+
+    /* =====================================================
+       CHECK DESKTOP
+    ===================================================== */
+
+    function isDesktop() {
+
+        return (
+            window.innerWidth >=
+            DESKTOP_MIN_WIDTH
+        );
+    }
+
+
+    /* =====================================================
+       DESKTOP VALUES
+    ===================================================== */
+
+    function getDesktopValues() {
+
+        const vw =
+            window.innerWidth;
+
+
+        return {
+
+            phoneStartY: "108vh",
+
+            phoneEndY: 0,
+
+            phoneStartScale: 1.08,
+
+            phoneEndScale: 0.90,
+
+
+            sideStartY: "108vh",
+
+            leftX:
+                -vw * 0.25,
+
+            rightX:
+                vw * 0.25,
+
+
+            sideStartScale:
+                0.16,
+
+            sideEndScale:
+                0.90,
+
+
+            entranceDuration:
+                2.6,
+
+            settleDuration:
+                0.6,
+
+            scrollLen:
+                1550
+        };
+    }
+
+
+    /* =====================================================
+       KILL DESKTOP ANIMATION
+    ===================================================== */
+
+    function killDesktopAnimation() {
+
+        const trigger =
+            ScrollTrigger.getById(
+                "expertiseST"
+            );
+
+
+        if (trigger) {
+            trigger.kill();
+        }
+
 
         gsap.killTweensOf([
             left,
             phone,
             right
         ]);
+    }
 
 
-        const v = getValues();
+    /* =====================================================
+       MOBILE / TABLET
+       Lightweight reveal
+    ===================================================== */
+
+    let mobileObserver = null;
 
 
-        /* =====================================================
-           PHONE INITIAL STATE
-        ===================================================== */
+    function setupMobileAnimation() {
 
-        gsap.set(phone, {
-
-            xPercent: -50,
-            yPercent: -50,
-
-            x: 0,
-            y: "105vh",
-
-            scale: v.phoneEnterScale,
-
-            transformPerspective: 1400,
-            transformOrigin: "50% 50%",
-
-            zIndex: 10,
-            opacity: 1,
-
-            force3D: true
-
-        });
+        killDesktopAnimation();
 
 
-        /* =====================================================
-           LEFT SCREEN INITIAL STATE
-        ===================================================== */
+        /* ---------------------------------------------
+           Reset GSAP transforms completely
+        --------------------------------------------- */
 
-        gsap.set(left, {
-
-            xPercent: -50,
-            yPercent: -50,
-
-            x: 0,
-            y: 0,
-
-            z: -160,
-
-            scale: v.sideStartScale,
-
-            transformPerspective: 1400,
-            transformOrigin: "50% 50%",
-
-            rotationY: 0,
-            rotationX: 24,
-            rotationZ: 0,
-
-            opacity: 0,
-
-            zIndex: 4,
-
-            force3D: true
-
-        });
+        gsap.set(
+            devices,
+            {
+                clearProps:
+                    "x,y,xPercent,yPercent,z,scale,rotationX,rotationY,rotationZ,opacity,transform"
+            }
+        );
 
 
-        /* =====================================================
-           RIGHT SCREEN INITIAL STATE
-        ===================================================== */
+        devices.forEach(
+            device => {
 
-        gsap.set(right, {
-
-            xPercent: -50,
-            yPercent: -50,
-
-            x: 0,
-            y: 0,
-
-            z: -160,
-
-            scale: v.sideStartScale,
-
-            transformPerspective: 1400,
-            transformOrigin: "50% 50%",
-
-            rotationY: 0,
-            rotationX: 24,
-            rotationZ: 0,
-
-            opacity: 0,
-
-            zIndex: 4,
-
-            force3D: true
-
-        });
-
-
-        /* =====================================================
-           MAIN TIMELINE
-        ===================================================== */
-
-        const tl = gsap.timeline({
-
-            defaults: {
-                ease: "none"
-            },
-
-            scrollTrigger: {
-
-                id: "expertiseST",
-
-                trigger: section,
-
-                start: "top top",
-
-                end: `+=${v.scrollLen}`,
-
-                scrub: 1.5,
-
-                pin: true,
-
-                anticipatePin: 1,
-
-                invalidateOnRefresh: true,
-
-                fastScrollEnd: false
+                device.classList.remove(
+                    "is-visible"
+                );
 
             }
-
-        });
-
-
-        /* =====================================================
-           01 — PHONE ENTERS
-        ===================================================== */
-
-        tl.to(phone, {
-
-            y: 0,
-
-            duration: 1.2,
-
-            ease: "power3.out"
-
-        });
+        );
 
 
-        /* =====================================================
-           02 — SHORT HOLD
-        ===================================================== */
+        /* ---------------------------------------------
+           IntersectionObserver
+        --------------------------------------------- */
 
-        tl.to({}, {
+        if (mobileObserver) {
 
-            duration: 0.35
+            mobileObserver.disconnect();
 
-        });
-
-
-        /* =====================================================
-           03 — PHONE SHRINKS
-        ===================================================== */
-
-        tl.to(phone, {
-
-            scale: v.phoneExitScale,
-
-            y: -8,
-
-            duration: 1.5,
-
-            ease: "power2.inOut"
-
-        });
+            mobileObserver = null;
+        }
 
 
-        /* =====================================================
-           04 — LEFT SCREEN EMERGES
-        ===================================================== */
+        mobileObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                !entry.isIntersecting
+                            ) {
+                                return;
+                            }
+
+
+                            entry.target.classList.add(
+                                "is-visible"
+                            );
+
+
+                            mobileObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.12,
+
+                    rootMargin:
+                        "0px 0px -8% 0px"
+                }
+            );
+
+
+        devices.forEach(
+            device => {
+
+                mobileObserver.observe(
+                    device
+                );
+
+            }
+        );
+    }
+
+
+    /* =====================================================
+       DESKTOP ANIMATION
+    ===================================================== */
+
+    function setupDesktopAnimation() {
+
+        if (mobileObserver) {
+
+            mobileObserver.disconnect();
+
+            mobileObserver = null;
+        }
+
+
+        killDesktopAnimation();
+
+
+        const v =
+            getDesktopValues();
+
+
+        /* ---------------------------------------------
+           PHONE INITIAL STATE
+        --------------------------------------------- */
+
+        gsap.set(
+            phone,
+            {
+
+                xPercent: -50,
+
+                yPercent: -50,
+
+                x: 0,
+
+                y: v.phoneStartY,
+
+                scale:
+                    v.phoneStartScale,
+
+                transformPerspective:
+                    1400,
+
+                transformOrigin:
+                    "50% 50%",
+
+                rotationX: 0,
+
+                rotationY: 0,
+
+                rotationZ: 0,
+
+                z: 80,
+
+                zIndex: 10,
+
+                opacity: 1,
+
+                force3D: true
+
+            }
+        );
+
+
+        /* ---------------------------------------------
+           LEFT INITIAL STATE
+        --------------------------------------------- */
+
+        gsap.set(
+            left,
+            {
+
+                xPercent: -50,
+
+                yPercent: -50,
+
+                x: 0,
+
+                y: v.sideStartY,
+
+                z: -100,
+
+                scale:
+                    v.sideStartScale,
+
+                transformPerspective:
+                    1400,
+
+                transformOrigin:
+                    "50% 50%",
+
+                rotationX: 18,
+
+                rotationY: 0,
+
+                rotationZ: 0,
+
+                opacity: 1,
+
+                zIndex: 4,
+
+                force3D: true
+
+            }
+        );
+
+
+        /* ---------------------------------------------
+           RIGHT INITIAL STATE
+        --------------------------------------------- */
+
+        gsap.set(
+            right,
+            {
+
+                xPercent: -50,
+
+                yPercent: -50,
+
+                x: 0,
+
+                y: v.sideStartY,
+
+                z: -100,
+
+                scale:
+                    v.sideStartScale,
+
+                transformPerspective:
+                    1400,
+
+                transformOrigin:
+                    "50% 50%",
+
+                rotationX: 18,
+
+                rotationY: 0,
+
+                rotationZ: 0,
+
+                opacity: 1,
+
+                zIndex: 4,
+
+                force3D: true
+
+            }
+        );
+
+
+        /* =================================================
+           TIMELINE
+        ================================================= */
+
+        const tl =
+            gsap.timeline({
+
+                defaults: {
+                    ease: "none"
+                },
+
+                scrollTrigger: {
+
+                    id: "expertiseST",
+
+                    trigger: section,
+
+                    start: "top top",
+
+                    end:
+                        `+=${v.scrollLen}`,
+
+                    scrub: 1.5,
+
+                    pin: true,
+
+                    anticipatePin: 1,
+
+                    invalidateOnRefresh: true,
+
+                    fastScrollEnd: false
+
+                }
+
+            });
+
+
+        /* =================================================
+           PHONE
+        ================================================= */
+
+        tl.to(
+            phone,
+            {
+
+                y: v.phoneEndY,
+
+                scale:
+                    v.phoneEndScale,
+
+                duration:
+                    v.entranceDuration,
+
+                ease:
+                    "power3.inOut"
+
+            }
+        );
+
+
+        /* =================================================
+           LEFT
+        ================================================= */
 
         tl.to(
             left,
             {
 
-                x: v.leftX,
+                x:
+                    v.leftX,
+
+                y: -4,
 
                 z: 0,
 
-                scale: v.sideEndScale,
+                scale:
+                    v.sideEndScale,
 
                 rotationX: 0,
+
                 rotationY: -2,
+
                 rotationZ: -7,
 
-                opacity: 1,
+                duration:
+                    v.entranceDuration,
 
-                duration: 1.8,
-
-                ease: "power3.inOut"
-
-            },
-            "<+0.05"
-        );
-
-
-        /* =====================================================
-           05 — RIGHT SCREEN EMERGES
-        ===================================================== */
-
-        tl.to(
-            right,
-            {
-
-                x: v.rightX,
-
-                z: 0,
-
-                scale: v.sideEndScale,
-
-                rotationX: 0,
-                rotationY: 2,
-                rotationZ: 7,
-
-                opacity: 1,
-
-                duration: 1.8,
-
-                ease: "power3.inOut"
+                ease:
+                    "power3.inOut"
 
             },
             "<"
         );
 
 
-        /* =====================================================
-           06 — SIDE SCREEN MICRO SETTLE
-        ===================================================== */
+        /* =================================================
+           RIGHT
+        ================================================= */
+
+        tl.to(
+            right,
+            {
+
+                x:
+                    v.rightX,
+
+                y: -4,
+
+                z: 0,
+
+                scale:
+                    v.sideEndScale,
+
+                rotationX: 0,
+
+                rotationY: 2,
+
+                rotationZ: 7,
+
+                duration:
+                    v.entranceDuration,
+
+                ease:
+                    "power3.inOut"
+
+            },
+            "<"
+        );
+
+
+        /* =================================================
+           SETTLE
+        ================================================= */
 
         tl.to(
             [left, right],
@@ -354,17 +534,15 @@ window.addEventListener("load", () => {
 
                 y: -4,
 
-                duration: 0.6,
+                duration:
+                    v.settleDuration,
 
-                ease: "power2.out"
+                ease:
+                    "power2.out"
 
             }
         );
 
-
-        /* =====================================================
-           07 — PHONE MICRO SETTLE
-        ===================================================== */
 
         tl.to(
             phone,
@@ -372,55 +550,123 @@ window.addEventListener("load", () => {
 
                 y: -12,
 
-                duration: 0.6,
+                duration:
+                    v.settleDuration,
 
-                ease: "power2.out"
+                ease:
+                    "power2.out"
 
             },
             "<"
         );
 
 
-        /* =====================================================
-           08 — FINAL HOLD
-        ===================================================== */
+        /* =================================================
+           HOLD
+        ================================================= */
 
-        tl.to({}, {
-
-            duration: 0.6
-
-        });
-
+        tl.to(
+            {},
+            {
+                duration: 0.6
+            }
+        );
     }
 
 
-    /* =========================================================
+    /* =====================================================
+       BUILD CORRECT MODE
+    ===================================================== */
+
+    function build() {
+
+        if (isDesktop()) {
+
+            setupDesktopAnimation();
+
+        } else {
+
+            setupMobileAnimation();
+
+        }
+
+
+        ScrollTrigger.refresh();
+    }
+
+
+    /* =====================================================
        INITIAL BUILD
-    ========================================================= */
+    ===================================================== */
 
     build();
 
 
-    /* =========================================================
-       RESIZE HANDLING
-    ========================================================= */
+    /* =====================================================
+       RESIZE
+    ===================================================== */
 
-    let resizeTimer;
+    let resizeTimer = null;
+
+    let previousDesktopState =
+        isDesktop();
+
 
     window.addEventListener(
         "resize",
         () => {
 
-            clearTimeout(resizeTimer);
+            clearTimeout(
+                resizeTimer
+            );
 
-            resizeTimer = setTimeout(() => {
 
-                build();
+            resizeTimer =
+                setTimeout(
+                    () => {
 
-                ScrollTrigger.refresh();
+                        const currentDesktopState =
+                            isDesktop();
 
-            }, 220);
 
+                        /*
+                         * Only rebuild when crossing
+                         * the actual animation breakpoint.
+                         *
+                         * This avoids unnecessary
+                         * GSAP recreation.
+                         */
+
+                        if (
+                            currentDesktopState !==
+                            previousDesktopState
+                        ) {
+
+                            previousDesktopState =
+                                currentDesktopState;
+
+                            build();
+
+                            return;
+                        }
+
+
+                        /*
+                         * Desktop needs new X positions
+                         * when viewport width changes.
+                         */
+
+                        if (
+                            currentDesktopState
+                        ) {
+
+                            build();
+
+                        }
+
+                    },
+                    250
+                );
         },
         {
             passive: true
@@ -428,103 +674,69 @@ window.addEventListener("load", () => {
     );
 
 
-    /* =========================================================
+    /* =====================================================
        REDUCED MOTION
-    ========================================================= */
+    ===================================================== */
 
-    const reducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    );
-
-
-    function applyReducedMotion() {
-
-        if (!reducedMotion.matches) return;
-
-        ScrollTrigger.getById("expertiseST")?.kill();
-
-        const v = getValues();
+    const reducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        );
 
 
-        /* -------------------------
-           PHONE
-        ------------------------- */
+    function handleReducedMotion() {
 
-        gsap.set(phone, {
+        if (
+            !reducedMotion.matches
+        ) {
 
-            xPercent: -50,
-            yPercent: -50,
+            build();
 
-            x: 0,
-            y: -12,
-
-            scale: 0.90,
-
-            z: 80,
-
-            opacity: 1
-
-        });
+            return;
+        }
 
 
-        /* -------------------------
-           LEFT
-        ------------------------- */
-
-        gsap.set(left, {
-
-            xPercent: -50,
-            yPercent: -50,
-
-            x: v.leftX,
-            y: -4,
-
-            z: 0,
-
-            scale: v.sideEndScale,
-
-            rotationX: 0,
-            rotationY: -2,
-            rotationZ: -7,
-
-            opacity: 1
-
-        });
+        killDesktopAnimation();
 
 
-        /* -------------------------
-           RIGHT
-        ------------------------- */
+        if (mobileObserver) {
 
-        gsap.set(right, {
+            mobileObserver.disconnect();
 
-            xPercent: -50,
-            yPercent: -50,
+            mobileObserver = null;
+        }
 
-            x: v.rightX,
-            y: -4,
 
-            z: 0,
+        gsap.set(
+            devices,
+            {
+                clearProps:
+                    "x,y,xPercent,yPercent,z,scale,rotationX,rotationY,rotationZ"
+            }
+        );
 
-            scale: v.sideEndScale,
 
-            rotationX: 0,
-            rotationY: 2,
-            rotationZ: 7,
+        devices.forEach(
+            device => {
 
-            opacity: 1
+                device.classList.add(
+                    "is-visible"
+                );
 
-        });
+            }
+        );
 
+
+        ScrollTrigger.refresh();
     }
 
 
     reducedMotion.addEventListener?.(
         "change",
-        applyReducedMotion
+        handleReducedMotion
     );
 
 
-    applyReducedMotion();
+    handleReducedMotion();
 
 });

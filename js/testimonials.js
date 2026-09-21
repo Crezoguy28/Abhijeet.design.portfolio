@@ -14,89 +14,203 @@ window.addEventListener("load", () => {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const section = document.querySelector(".testimonials");
-    const cards = gsap.utils.toArray(".testimonial-card");
+    const section =
+        document.querySelector(".testimonials");
+
+    const cards =
+        gsap.utils.toArray(".testimonial-card");
 
     if (!section || cards.length < 2) {
         return;
     }
 
-    /* -----------------------------------------
-       INITIAL STATE
-    ----------------------------------------- */
 
-    gsap.set(cards, {
-        y: 0,
-        x: 0,
-        scale: 1,
-        opacity: 1
-    });
+    /* =====================================================
+       DESKTOP ONLY
+       >=1025px
 
-    /* -----------------------------------------
-       CINEMATIC STACK
-    ----------------------------------------- */
+       Existing cinematic animation preserved.
+    ===================================================== */
 
-    const timeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: section,
-            start: "top top",
-            end: `+=${(cards.length - 1) * 850 + 400}`,
-            pin: true,
-            pinSpacing: true,
-            scrub: 1.1,
-            anticipatePin: 1,
-            invalidateOnRefresh: true
-        }
-    });
+    const mm = gsap.matchMedia();
 
-    cards.forEach((card, index) => {
+    mm.add("(min-width: 1025px)", () => {
 
-        if (index === 0) {
-            return;
-        }
+        gsap.set(cards, {
+            y: 0,
+            x: 0,
+            scale: 1,
+            opacity: 1
+        });
 
-        const previousCard = cards[index - 1];
 
-        /* Next card rises from below */
-        timeline.fromTo(
-            card,
-            {
-                y: () => window.innerHeight * 0.75,
-                x: 0,
-                scale: 1,
-                opacity: 1
-            },
-            {
-                y: 0,
-                x: 0,
-                scale: 1,
-                opacity: 1,
-                duration: 1,
-                ease: "none"
+        const timeline =
+            gsap.timeline({
+
+                scrollTrigger: {
+
+                    trigger: section,
+
+                    start: "top top",
+
+                    end:
+                        `+=${(
+                            (cards.length - 1) *
+                            850
+                        ) + 400}`,
+
+                    pin: true,
+
+                    pinSpacing: true,
+
+                    scrub: 1.1,
+
+                    anticipatePin: 1,
+
+                    invalidateOnRefresh: true
+                }
+
+            });
+
+
+        cards.forEach(
+            (card, index) => {
+
+                if (index === 0) {
+                    return;
+                }
+
+
+                const previousCard =
+                    cards[index - 1];
+
+
+                /* -----------------------------------------
+                   Next card rises from below
+                ----------------------------------------- */
+
+                timeline.fromTo(
+
+                    card,
+
+                    {
+                        y: () =>
+                            window.innerHeight *
+                            0.75,
+
+                        x: 0,
+
+                        scale: 1,
+
+                        opacity: 1
+                    },
+
+                    {
+                        y: 0,
+
+                        x: 0,
+
+                        scale: 1,
+
+                        opacity: 1,
+
+                        duration: 1,
+
+                        ease: "none"
+                    }
+                );
+
+
+                /* -----------------------------------------
+                   Previous card settles
+                ----------------------------------------- */
+
+                timeline.to(
+
+                    previousCard,
+
+                    {
+                        y: -12,
+
+                        x: 0,
+
+                        scale: 0.95,
+
+                        opacity: 1,
+
+                        duration: 1,
+
+                        ease: "none"
+                    },
+
+                    "<"
+                );
+
+
+                /* -----------------------------------------
+                   Cinematic pause
+                ----------------------------------------- */
+
+                timeline.to(
+                    {},
+                    {
+                        duration: 0.35
+                    }
+                );
+
             }
         );
 
-        /* Previous card settles slightly backward */
-        timeline.to(
-            previousCard,
-            {
-                y: -12,
-                x: 0,
-                scale: 0.95,
-                opacity: 1,
-                duration: 1,
-                ease: "none"
-            },
-            "<"
-        );
 
-        /* Small cinematic pause */
-        timeline.to(
-            {},
-            {
-                duration: 0.35
-            }
-        );
+        requestAnimationFrame(() => {
+
+            ScrollTrigger.refresh();
+
+        });
+
+
+        return () => {
+
+            timeline.kill();
+
+            gsap.set(
+                cards,
+                {
+                    clearProps:
+                        "transform,opacity"
+                }
+            );
+
+        };
+
     });
+
+
+    /* =====================================================
+       REFRESH AFTER RESIZE / ORIENTATION
+    ===================================================== */
+
+    let resizeTimer;
+
+    window.addEventListener(
+        "resize",
+        () => {
+
+            clearTimeout(
+                resizeTimer
+            );
+
+            resizeTimer =
+                setTimeout(() => {
+
+                    ScrollTrigger.refresh();
+
+                }, 250);
+
+        },
+        {
+            passive: true
+        }
+    );
 
 });

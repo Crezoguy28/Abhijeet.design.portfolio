@@ -1,95 +1,112 @@
-window.addEventListener("load", () => {
+/* =========================================================
+   ABOUT
+   Lightweight viewport reveal
 
-    gsap.registerPlugin(ScrollTrigger);
+   Desktop + mobile use the same lightweight reveal.
+   No heavy desktop animation is required here.
+========================================================= */
 
+document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================================================
-       ABOUT — STATS FADE IN UP
-    ========================================================= */
+    const about =
+        document.querySelector(".about");
 
-    const stats = document.querySelectorAll(".about-stats .stat");
-
-    if (stats.length) {
-
-        gsap.fromTo(
-            stats,
-            {
-                y: 30,
-                opacity: 0
-            },
-            {
-                y: 0,
-                opacity: 1,
-
-                duration: 0.8,
-                stagger: 0.18,
-
-                ease: "power3.out",
-
-                scrollTrigger: {
-                    trigger: ".about-stats",
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
-                }
-            }
-        );
-
+    if (!about) {
+        return;
     }
-    /* =========================================================
-       ABOUT — ORGANIC / FLUID IMAGE REVEAL
-    ========================================================= */
 
-    const visual = document.querySelector(".about-fluid-reveal");
-    const wobble = document.querySelector(".about-fluid-reveal__wobble");
-    const image = document.querySelector(".about-fluid-reveal__image");
 
-    if (!visual || !wobble || !image) return;
+    const elements = [
+        ...about.querySelectorAll(
+            ".about-header, .about-image-reveal, .about-content"
+        )
+    ];
 
-    const reducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    );
 
-    if (reducedMotion.matches) {
+    if (!elements.length) {
+        return;
+    }
 
-        gsap.set(wobble, {
-            scale: 1
-        });
 
-        gsap.set(image, {
-            scale: 1
+    /* =====================================================
+       REDUCED MOTION
+    ===================================================== */
+
+    const reducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+
+    if (reducedMotion) {
+
+        elements.forEach(element => {
+            element.classList.add("is-visible");
         });
 
         return;
     }
 
-    gsap.set(wobble, {
-        scale: 0.08,
-        xPercent: -3,
-        yPercent: 4
-    });
 
-    gsap.set(image, {
-        scale: 1.08,
-        transformOrigin: "50% 50%"
-    });
+    /* =====================================================
+       INITIAL STATE
+    ===================================================== */
 
-    const fluidReveal = gsap.timeline({
+    elements.forEach(element => {
 
-        scrollTrigger: {
+        element.style.opacity = "0";
 
-            trigger: visual,
+        element.style.transform =
+            "translateY(30px)";
 
-            start: "top 78%",
-
-            end: "bottom 42%",
-
-            scrub: 2,
-
-            invalidateOnRefresh: true,
-
-            fastScrollEnd: false
-        }
+        element.style.transition =
+            "opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), " +
+            "transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)";
 
     });
+
+
+    /* =====================================================
+       VIEWPORT OBSERVER
+    ===================================================== */
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+
+
+                    entry.target.style.opacity =
+                        "1";
+
+
+                    entry.target.style.transform =
+                        "translateY(0)";
+
+
+                    observer.unobserve(
+                        entry.target
+                    );
+
+                });
+
+            },
+            {
+                threshold: 0.12,
+
+                rootMargin:
+                    "0px 0px -8% 0px"
+            }
+        );
+
+
+    elements.forEach(
+        element => observer.observe(element)
+    );
 
 });
