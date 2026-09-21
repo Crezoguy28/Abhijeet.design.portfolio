@@ -85,7 +85,7 @@ window.addEventListener("load", () => {
 
         return {
 
-            phoneStartY: "108vh",
+            phoneStartY: "50vh",
 
             phoneEndY: 0,
 
@@ -94,7 +94,7 @@ window.addEventListener("load", () => {
             phoneEndScale: 0.90,
 
 
-            sideStartY: "108vh",
+            sideStartY: "100vh",
 
             leftX:
                 -vw * 0.25,
@@ -117,7 +117,7 @@ window.addEventListener("load", () => {
                 0.6,
 
             scrollLen:
-                1550
+                1200
         };
     }
 
