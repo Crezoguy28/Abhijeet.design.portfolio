@@ -51,7 +51,7 @@
 
 @font-face {
     font-family: "Basement";
-    src: url("../fonts/BasementGrotesque-Black_v1.202.otf")
+    src: url("../../fonts/BasementGrotesque-Black_v1.202.otf")
         format("opentype");
 
     font-weight: 900;
@@ -61,7 +61,7 @@
 
 @font-face {
     font-family: "Satoshi";
-    src: url("../fonts/Satoshi-Regular.otf")
+    src: url("../../fonts/Satoshi-Regular.otf")
         format("opentype");
 
     font-weight: 400;
@@ -71,7 +71,7 @@
 
 @font-face {
     font-family: "Satoshi";
-    src: url("../fonts/Satoshi-Medium.otf")
+    src: url("../../fonts/Satoshi-Medium.otf")
         format("opentype");
 
     font-weight: 500;
@@ -81,7 +81,7 @@
 
 @font-face {
     font-family: "Satoshi";
-    src: url("../fonts/Satoshi-Bold.otf")
+    src: url("../../fonts/Satoshi-Bold.otf")
         format("opentype");
 
     font-weight: 700;

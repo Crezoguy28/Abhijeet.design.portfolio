@@ -1,24 +1,31 @@
-/* =========================================================
-   NAVBAR
-   Responsive:
-   Desktop  : 1920 → 1536
-   Laptop   : 1440 → 1366
-   Tablet   : 1024 → 768
-   Mobile   : 600 → 375
-========================================================= */
-
 
 /* =========================================================
    01. HEADER
 ========================================================= */
 
 .site-header {
-    position: relative;
+    position: fixed;
+
+    top: 0;
+    left: 0;
 
     width: 100%;
 
     z-index: 10000;
+
+    transform: translate3d(0, 0, 0);
+
+    transition:
+        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+
+    will-change: transform;
 }
+
+.site-header.header-hidden {
+    transform: translate3d(0, -110%, 0);
+}
+
+/* Hide while scrolling down */
 
 
 /* =========================================================
@@ -39,6 +46,7 @@
         Container controls horizontal spacing.
         Navbar adds NO horizontal padding.
     */
+
     padding-inline: 0;
 }
 
@@ -158,9 +166,6 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-
-/* Hamburger lines */
-
 .menu-toggle::before,
 .menu-toggle::after {
     content: "";
@@ -204,9 +209,6 @@
 /* =========================================================
    08. TABLET + MOBILE
    <=1100px
-
-   Desktop navigation changes to hamburger before
-   the layout becomes cramped.
 ========================================================= */
 
 @media (max-width: 1100px) {
@@ -214,10 +216,6 @@
     .navbar {
         min-height: 76px;
     }
-
-    /*
-        Full-screen mobile/tablet navigation.
-    */
 
     .navbar-links {
         position: fixed;
@@ -282,26 +280,16 @@
         text-align: center;
     }
 
-    /*
-        Hire Me is desktop-only.
-    */
-
     .navbar-actions .button {
         display: none;
     }
-
-    /*
-        Hamburger becomes visible.
-    */
 
     .menu-toggle {
         display: block;
     }
 
 
-    /* -----------------------------------------------------
-       HAMBURGER → CLOSE
-    ----------------------------------------------------- */
+    /* Hamburger → Close */
 
     .menu-toggle[aria-expanded="true"]::before {
         top: 23px;
@@ -428,6 +416,7 @@
 
 @media (prefers-reduced-motion: reduce) {
 
+    .site-header,
     .navbar-links,
     .menu-toggle::before,
     .menu-toggle::after,

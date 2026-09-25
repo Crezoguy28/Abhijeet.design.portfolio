@@ -1,0 +1,14 @@
+/* Home page stylesheet entry point */
+@import url("../global/base.css");
+@import url("../global/components.css");
+@import url("../global/navbar.css");
+@import url("../global/contact.css");
+@import url("../global/footer.css");
+@import url("../global/testimonials.css");
+
+@import url("about.css");
+@import url("case-studies.css");
+@import url("experience.css");
+@import url("expertise.css");
+@import url("hero.css");
+@import url("text-animation.css");
