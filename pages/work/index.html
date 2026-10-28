@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,26 +15,606 @@
     <link rel="stylesheet" href="../../css/global/footer.css">
     <link rel="stylesheet" href="../../css/pages/work.css">
 </head>
+
 <body>
     <!-- Shared navbar -->
-    <header class="site-header"></header>
+    <header class="site-header">
+        <nav class="navbar container" aria-label="Main navigation">
+            <a class="navbar-logo" href="../../index.html" aria-label="Crezoguy Home">
+                <img src="../../images/brand/logo.png" alt="Crezoguy">
+            </a>
+
+            <ul class="navbar-links" id="nav-links">
+                <li><a class="nav-link" href="#about">About Me</a></li>
+                <li><a class="nav-link" href="pages/work/index.html">My Work</a></li>
+                <li><a class="nav-link" href="#experience">Experience</a></li>
+                <li><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                <li><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="navbar-actions">
+                <a class="button button-primary" href="#contact">Hire Me</a>
+
+                <button class="menu-toggle" id="hamburger" type="button" aria-label="Open menu"
+                    aria-controls="nav-links" aria-expanded="false">
+                </button>
+            </div>
+        </nav>
+    </header>
+
 
     <main class="work-page">
-        <!-- Work hero -->
-        <section class="work-hero"></section>
+        <section class="work-hero" aria-label="My world of creation">
 
-        <!-- Category filter: All / Websites / Mobile Apps / Dashboards -->
-        <section class="work-categories"></section>
+            <!-- Base image -->
+            <!-- <div class="hero-layer hero-layer1">
+                <img src="../../images/projects/bg_layer.png" alt="">
+            </div> -->
 
-        <!-- Project cards / browser mockup showcase -->
-        <section class="work-projects"></section>
+            <!-- Filled text behind foreground image -->
+            <div class="hero-word-layer hero-word-layer1" aria-hidden="true">
+                <h1 class="hero-word hero-word-filled">
+                    MY WORLD OF CREATION
+                </h1>
+            </div>
 
-        <!-- Shared testimonials -->
-        <section class="testimonials" id="testimonials"></section>
+            <!-- Foreground image -->
+            <div class="hero-layer hero-layer2" aria-hidden="true">
+                <img src="../../images/projects/fg_layer.png" alt="">
+            </div>
 
-        <!-- Shared contact -->
-        <section class="contact" id="contact"></section>
+            <!-- Outline text in front -->
+            <div class="hero-word-layer hero-word-layer2" aria-hidden="true">
+                <h2 class="hero-word hero-word-outline">
+                    MY WORLD OF CREATION
+                </h2>
+            </div>
+
+        </section>
+
+
+        <!-- SECTION 2: WORK SHOWCASE -->
+        <section class="work-showcase" id="work-showcase">
+
+            <div class="work-filters" role="group" aria-label="Filter projects">
+                <button class="work-filter is-active" data-filter="all" aria-pressed="true" type="button">All</button>
+                <button class="work-filter" data-filter="website" aria-pressed="false" type="button">Websites</button>
+                <button class="work-filter" data-filter="app" aria-pressed="false" type="button">Apps</button>
+                <button class="work-filter" data-filter="dashboard" aria-pressed="false"
+                    type="button">Dashboards</button>
+            </div>
+
+            <div class="work-stage" id="work-stage">
+
+                <div class="work-carousel" id="work-carousel" aria-label="Portfolio projects">
+
+                    <!-- <button class="work-card" type="button" data-project="tiperx" data-category="app"
+                        data-title="TiperX">
+                        <img src="../../images/projects/websites/green_energy.png" alt="TiperX mobile app design"
+                            draggable="false">
+                    </button> -->
+
+                    <button class="work-card" type="button" data-project="gapalyze" data-category="website"
+                        data-title="Gapalyze">
+                        <img src="../../images/projects/selected_project/Gapalyze_website_mockup.png" alt="Gapalyze website design"
+                            draggable="false">
+                    </button>
+                    <button class="work-card" type="button" data-project="gapalyze" data-category="website"
+                        data-title="Gapalyze">
+                        <img src="../../images/projects/selected_project/Gknock_webiste_mockup.png" alt="Gapalyze website design"
+                            draggable="false">
+                    </button>
+                    <button class="work-card" type="button" data-project="gapalyze" data-category="website"
+                        data-title="Gapalyze">
+                        <img src="../../images/projects/selected_project/hotela_website_mockup.jpg" alt="Gapalyze website design"
+                            draggable="false">
+                    </button>
+                    <button class="work-card" type="button" data-project="gapalyze" data-category="website"
+                        data-title="Gapalyze">
+                        <img src="../../images/projects/selected_project/intercellar_website_mockup.jpg" alt="Gapalyze website design"
+                            draggable="false">
+                    </button>
+                    <button class="work-card" type="button" data-project="gapalyze" data-category="website"
+                        data-title="Gapalyze">
+                        <img src="../../images/projects/selected_project/jazz_website_mockup.jpg" alt="Gapalyze website design"
+                            draggable="false">
+                    </button>
+                    <button class="work-card" type="button" data-project="gapalyze" data-category="website"
+                        data-title="Gapalyze">
+                        <img src="../../images/projects/selected_project/ravageous_website_mockup.jpg" alt="Gapalyze website design"
+                            draggable="false">
+                    </button>
+                    <button class="work-card" type="button" data-project="gapalyze" data-category="website"
+                        data-title="Gapalyze">
+                        <img src="../../images/projects/selected_project/sura_website_mockup.jpg" alt="Gapalyze website design"
+                            draggable="false">
+                    </button>
+                    <button class="work-card" type="button" data-project="gapalyze" data-category="website"
+                        data-title="Gapalyze">
+                        <img src="../../images/projects/selected_project/whiskyamber_website_mockup.jpg" alt="Gapalyze website design"
+                            draggable="false">
+                    </button>
+                                     
+
+                    <!-- <button class="work-card" type="button" data-project="perfect-kiosk" data-category="dashboard"
+                        data-title="Perfect Kiosk">
+                        <img src="../../images/projects/websites/1legion.png" alt="Perfect Kiosk dashboard design"
+                            draggable="false">
+                    </button>
+
+                    <button class="work-card" type="button" data-project="german-tmx" data-category="app"
+                        data-title="German TMX">
+                        <img src="../../images/projects/websites/ravageous.png" alt="German TMX mobile app design"
+                            draggable="false">
+                    </button>
+
+                    <button class="work-card" type="button" data-project="school-management" data-category="dashboard"
+                        data-title="School Management">
+                        <img src="../../images/projects/websites/jazz_website.jpg"
+                            alt="School Management dashboard design" draggable="false">
+                    </button> -->
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SELECTED PROJECTS -->
+        <section class="work-projects" id="selected-projects">
+            <div class="work-projects__container">
+
+                <div class="work-projects__heading">
+                    <div>
+                        <span class="work-projects__eyebrow">A SELECTION OF MY WORK</span>
+                        <h2>Selected Projects<span>.</span></h2>
+                    </div>
+                    <p>
+                        Digital experiences, interfaces, and products designed
+                        with purpose.
+                    </p>
+                </div>
+
+                <div class="work-projects__grid">
+
+                    <!-- WEBSITE PROJECT -->
+                    <article class="project-grid-card work-card work-card--website">
+                        <div class="work-card__topline">
+                            <div class="work-card__identity">
+                                <span class="work-card__arrow" aria-hidden="true">↗</span>
+                                <h3>IntraCeller</h3>
+                            </div>
+                            <span class="work-card__year">2026</span>
+                        </div>
+
+                        <button class="work-card__preview work-card__preview--scroll" type="button"
+                            data-preview="intraceller" aria-label="Open IntraCeller website preview">
+                            <span class="work-card__website-viewport">
+                                <img class="work-card__website-image"
+                                    src="../../images/projects/websites/Interceller_website.png"
+                                    alt="IntraCeller website design preview" loading="lazy" />
+                            </span>
+                            <span class="work-card__preview-hint">Explore website ↗</span>
+                        </button>
+
+                        <div class="work-card__details">
+                            <div>
+                                <h4>IntraCeller — Digital Experience</h4>
+                                <p>Website Design · UI/UX · Responsive Web</p>
+                            </div>
+                            <span class="work-card__type">WEBSITE</span>
+                        </div>
+                    </article>
+                    <article class="project-grid-card work-card work-card--website">
+                        <div class="work-card__topline">
+                            <div class="work-card__identity">
+                                <span class="work-card__arrow" aria-hidden="true">↗</span>
+                                <h3>IntraCeller</h3>
+                            </div>
+                            <span class="work-card__year">2026</span>
+                        </div>
+
+                        <button class="work-card__preview work-card__preview--scroll" type="button"
+                            data-preview="intraceller" aria-label="Open IntraCeller website preview">
+                            <span class="work-card__website-viewport">
+                                <img class="work-card__website-image"
+                                    src="../../images/projects/websites/Gapalyze website Home Page.png"
+                                    alt="IntraCeller website design preview" loading="lazy" />
+                            </span>
+                            <span class="work-card__preview-hint">Explore website ↗</span>
+                        </button>
+
+                        <div class="work-card__details">
+                            <div>
+                                <h4>IntraCeller — Digital Experience</h4>
+                                <p>Website Design · UI/UX · Responsive Web</p>
+                            </div>
+                            <span class="work-card__type">WEBSITE</span>
+                        </div>
+                    </article>
+                    <article class="project-grid-card work-card work-card--website">
+                        <div class="work-card__topline">
+                            <div class="work-card__identity">
+                                <span class="work-card__arrow" aria-hidden="true">↗</span>
+                                <h3>IntraCeller</h3>
+                            </div>
+                            <span class="work-card__year">2026</span>
+                        </div>
+
+                        <button class="work-card__preview work-card__preview--scroll" type="button"
+                            data-preview="intraceller" aria-label="Open IntraCeller website preview">
+                            <span class="work-card__website-viewport">
+                                <img class="work-card__website-image"
+                                    src="../../images/projects/websites/F1rstChaufeurs_website.png"
+                                    alt="IntraCeller website design preview" loading="lazy" />
+                            </span>
+                            <span class="work-card__preview-hint">Explore website ↗</span>
+                        </button>
+
+                        <div class="work-card__details">
+                            <div>
+                                <h4>IntraCeller — Digital Experience</h4>
+                                <p>Website Design · UI/UX · Responsive Web</p>
+                            </div>
+                            <span class="work-card__type">WEBSITE</span>
+                        </div>
+                    </article>
+                    <article class="project-grid-card work-card work-card--website">
+                        <div class="work-card__topline">
+                            <div class="work-card__identity">
+                                <span class="work-card__arrow" aria-hidden="true">↗</span>
+                                <h3>IntraCeller</h3>
+                            </div>
+                            <span class="work-card__year">2026</span>
+                        </div>
+
+                        <button class="work-card__preview work-card__preview--scroll" type="button"
+                            data-preview="intraceller" aria-label="Open IntraCeller website preview">
+                            <span class="work-card__website-viewport">
+                                <img class="work-card__website-image"
+                                    src="../../images/projects/websites/Gnock Website Home Page.png"
+                                    alt="IntraCeller website design preview" loading="lazy" />
+                            </span>
+                            <span class="work-card__preview-hint">Explore website ↗</span>
+                        </button>
+
+                        <div class="work-card__details">
+                            <div>
+                                <h4>IntraCeller — Digital Experience</h4>
+                                <p>Website Design · UI/UX · Responsive Web</p>
+                            </div>
+                            <span class="work-card__type">WEBSITE</span>
+                        </div>
+                    </article>
+                    <article class="project-grid-card work-card work-card--website">
+                        <div class="work-card__topline">
+                            <div class="work-card__identity">
+                                <span class="work-card__arrow" aria-hidden="true">↗</span>
+                                <h3>IntraCeller</h3>
+                            </div>
+                            <span class="work-card__year">2026</span>
+                        </div>
+
+                        <button class="work-card__preview work-card__preview--scroll" type="button"
+                            data-preview="intraceller" aria-label="Open IntraCeller website preview">
+                            <span class="work-card__website-viewport">
+                                <img class="work-card__website-image"
+                                    src="../../images/projects/websites/jazz_website.png"
+                                    alt="IntraCeller website design preview" loading="lazy" />
+                            </span>
+                            <span class="work-card__preview-hint">Explore website ↗</span>
+                        </button>
+
+                        <div class="work-card__details">
+                            <div>
+                                <h4>IntraCeller — Digital Experience</h4>
+                                <p>Website Design · UI/UX · Responsive Web</p>
+                            </div>
+                            <span class="work-card__type">WEBSITE</span>
+                        </div>
+                    </article>
+                    <article class="project-grid-card work-card work-card--website">
+                        <div class="work-card__topline">
+                            <div class="work-card__identity">
+                                <span class="work-card__arrow" aria-hidden="true">↗</span>
+                                <h3>IntraCeller</h3>
+                            </div>
+                            <span class="work-card__year">2026</span>
+                        </div>
+
+                        <button class="work-card__preview work-card__preview--scroll" type="button"
+                            data-preview="intraceller" aria-label="Open IntraCeller website preview">
+                            <span class="work-card__website-viewport">
+                                <img class="work-card__website-image"
+                                    src="../../images/projects/websites/DigitalMarketing_website.png"
+                                    alt="IntraCeller website design preview" loading="lazy" />
+                            </span>
+                            <span class="work-card__preview-hint">Explore website ↗</span>
+                        </button>
+
+                        <div class="work-card__details">
+                            <div>
+                                <h4>IntraCeller — Digital Experience</h4>
+                                <p>Website Design · UI/UX · Responsive Web</p>
+                            </div>
+                            <span class="work-card__type">WEBSITE</span>
+                        </div>
+                    </article>
+                    <article class="project-grid-card work-card work-card--website">
+                        <div class="work-card__topline">
+                            <div class="work-card__identity">
+                                <span class="work-card__arrow" aria-hidden="true">↗</span>
+                                <h3>IntraCeller</h3>
+                            </div>
+                            <span class="work-card__year">2026</span>
+                        </div>
+
+                        <button class="work-card__preview work-card__preview--scroll" type="button"
+                            data-preview="intraceller" aria-label="Open IntraCeller website preview">
+                            <span class="work-card__website-viewport">
+                                <img class="work-card__website-image"
+                                    src="../../images/projects/websites/PoshOutdoors-2_website.png"
+                                    alt="IntraCeller website design preview" loading="lazy" />
+                            </span>
+                            <span class="work-card__preview-hint">Explore website ↗</span>
+                        </button>
+
+                        <div class="work-card__details">
+                            <div>
+                                <h4>IntraCeller — Digital Experience</h4>
+                                <p>Website Design · UI/UX · Responsive Web</p>
+                            </div>
+                            <span class="work-card__type">WEBSITE</span>
+                        </div>
+                    </article>
+                    <article class="project-grid-card work-card work-card--website">
+                        <div class="work-card__topline">
+                            <div class="work-card__identity">
+                                <span class="work-card__arrow" aria-hidden="true">↗</span>
+                                <h3>IntraCeller</h3>
+                            </div>
+                            <span class="work-card__year">2026</span>
+                        </div>
+
+                        <button class="work-card__preview work-card__preview--scroll" type="button"
+                            data-preview="intraceller" aria-label="Open IntraCeller website preview">
+                            <span class="work-card__website-viewport">
+                                <img class="work-card__website-image"
+                                    src="../../images/projects/websites/Pro-vital_website.png"
+                                    alt="IntraCeller website design preview" loading="lazy" />
+                            </span>
+                            <span class="work-card__preview-hint">Explore website ↗</span>
+                        </button>
+
+                        <div class="work-card__details">
+                            <div>
+                                <h4>IntraCeller — Digital Experience</h4>
+                                <p>Website Design · UI/UX · Responsive Web</p>
+                            </div>
+                            <span class="work-card__type">WEBSITE</span>
+                        </div>
+                    </article>
+                    <article class="project-grid-card work-card work-card--website">
+                        <div class="work-card__topline">
+                            <div class="work-card__identity">
+                                <span class="work-card__arrow" aria-hidden="true">↗</span>
+                                <h3>IntraCeller</h3>
+                            </div>
+                            <span class="work-card__year">2026</span>
+                        </div>
+
+                        <button class="work-card__preview work-card__preview--scroll" type="button"
+                            data-preview="intraceller" aria-label="Open IntraCeller website preview">
+                            <span class="work-card__website-viewport">
+                                <img class="work-card__website-image"
+                                    src="../../images/projects/websites/ReflowX_Home.png"
+                                    alt="IntraCeller website design preview" loading="lazy" />
+                            </span>
+                            <span class="work-card__preview-hint">Explore website ↗</span>
+                        </button>
+
+                        <div class="work-card__details">
+                            <div>
+                                <h4>IntraCeller — Digital Experience</h4>
+                                <p>Website Design · UI/UX · Responsive Web</p>
+                            </div>
+                            <span class="work-card__type">WEBSITE</span>
+                        </div>
+                    </article>
+                    <article class="project-grid-card work-card work-card--website">
+                        <div class="work-card__topline">
+                            <div class="work-card__identity">
+                                <span class="work-card__arrow" aria-hidden="true">↗</span>
+                                <h3>IntraCeller</h3>
+                            </div>
+                            <span class="work-card__year">2026</span>
+                        </div>
+
+                        <button class="work-card__preview work-card__preview--scroll" type="button"
+                            data-preview="intraceller" aria-label="Open IntraCeller website preview">
+                            <span class="work-card__website-viewport">
+                                <img class="work-card__website-image"
+                                    src="../../images/projects/websites/ready2Travel-2_website.png"
+                                    alt="IntraCeller website design preview" loading="lazy" />
+                            </span>
+                            <span class="work-card__preview-hint">Explore website ↗</span>
+                        </button>
+
+                        <div class="work-card__details">
+                            <div>
+                                <h4>IntraCeller — Digital Experience</h4>
+                                <p>Website Design · UI/UX · Responsive Web</p>
+                            </div>
+                            <span class="work-card__type">WEBSITE</span>
+                        </div>
+                    </article>
+                    <article class="project-grid-card work-card work-card--website">
+                        <div class="work-card__topline">
+                            <div class="work-card__identity">
+                                <span class="work-card__arrow" aria-hidden="true">↗</span>
+                                <h3>IntraCeller</h3>
+                            </div>
+                            <span class="work-card__year">2026</span>
+                        </div>
+
+                        <button class="work-card__preview work-card__preview--scroll" type="button"
+                            data-preview="intraceller" aria-label="Open IntraCeller website preview">
+                            <span class="work-card__website-viewport">
+                                <img class="work-card__website-image"
+                                    src="../../images/projects/websites/Ravageous-game_website.png"
+                                    alt="IntraCeller website design preview" loading="lazy" />
+                            </span>
+                            <span class="work-card__preview-hint">Explore website ↗</span>
+                        </button>
+
+                        <div class="work-card__details">
+                            <div>
+                                <h4>IntraCeller — Digital Experience</h4>
+                                <p>Website Design · UI/UX · Responsive Web</p>
+                            </div>
+                            <span class="work-card__type">WEBSITE</span>
+                        </div>
+                    </article>
+
+
+                    <!-- DASHBOARD PROJECT -->
+                    <article class="project-grid-card work-card work-card--product">
+                        <div class="work-card__topline">
+                            <div class="work-card__identity">
+                                <span class="work-card__arrow" aria-hidden="true">↗</span>
+                                <h3>Gapalyze</h3>
+                            </div>
+                            <span class="work-card__year">2026</span>
+                        </div>
+
+                        <a class="work-card__preview work-card__preview--product" href="../case-studies/gapalyze.html"
+                            aria-label="View Gapalyze dashboard case study">
+                            <img src="../../images/projects/websites/Gapalyze_website.png"
+                                alt="Gapalyze analytics dashboard interface" loading="lazy" />
+                            <span class="work-card__open-label">
+                                View case study <span aria-hidden="true">↗</span>
+                            </span>
+                        </a>
+
+                        <div class="work-card__details work-card__details--expanded">
+                            <div>
+                                <h4>Analytics & Business Intelligence</h4>
+                                <p>
+                                    Designing complex data into clear, actionable
+                                    dashboard experiences.
+                                </p>
+                            </div>
+                            <div class="work-card__tags">
+                                <span>Dashboard</span>
+                                <span>SaaS</span>
+                                <span>UI/UX</span>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <!-- MOBILE APP PROJECT -->
+                    <article class="project-grid-card work-card work-card--product">
+                        <div class="work-card__topline">
+                            <div class="work-card__identity">
+                                <span class="work-card__arrow" aria-hidden="true">↗</span>
+                                <h3>TiperX</h3>
+                            </div>
+                            <span class="work-card__year">2025</span>
+                        </div>
+
+                        <a class="work-card__preview work-card__preview--product work-card__preview--mobile"
+                            href="../case-studies/tiperx.html" aria-label="View TiperX mobile app case study">
+                            <img src="../../images/home/TipperX.png" alt="TiperX mobile app interface mockups"
+                                loading="lazy" />
+                            <span class="work-card__open-label">
+                                View case study <span aria-hidden="true">↗</span>
+                            </span>
+                        </a>
+
+                        <div class="work-card__details work-card__details--expanded">
+                            <div>
+                                <h4>Stock Tips Mobile Application</h4>
+                                <p>
+                                    Mobile product experience focused on presenting
+                                    market insights clearly.
+                                </p>
+                            </div>
+                            <div class="work-card__tags">
+                                <span>Mobile App</span>
+                                <span>Product Design</span>
+                                <span>UI/UX</span>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <!-- WEBSITE PROJECT -->
+                    <article class="project-grid-card work-card work-card--website">
+                        <div class="work-card__topline">
+                            <div class="work-card__identity">
+                                <span class="work-card__arrow" aria-hidden="true">↗</span>
+                                <h3>Believ8</h3>
+                            </div>
+                            <span class="work-card__year">2026</span>
+                        </div>
+
+                        <button class="work-card__preview work-card__preview--scroll" type="button"
+                            data-preview="believ8" aria-label="Open Believ8 website preview">
+                            <span class="work-card__website-viewport">
+                                <img class="work-card__website-image"
+                                    src="../../images/projects/websites/believ8-full-page.jpg"
+                                    alt="Believ8 website design preview" loading="lazy" />
+                            </span>
+                            <span class="work-card__preview-hint">Explore website ↗</span>
+                        </button>
+
+                        <div class="work-card__details">
+                            <div>
+                                <h4>Believ8 — Website Experience</h4>
+                                <p>Website Design · Visual Design · UI/UX</p>
+                            </div>
+                            <span class="work-card__type">WEBSITE</span>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- WEBSITE PREVIEW MODAL -->
+        <div class="work-preview-modal" id="work-preview-modal" aria-hidden="true">
+            <div class="work-preview-modal__backdrop" data-close-preview></div>
+
+            <div class="work-preview-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="work-preview-title"
+                tabindex="-1">
+                <div class="work-preview-modal__header">
+                    <div>
+                        <span>WEBSITE PREVIEW</span>
+                        <h2 id="work-preview-title">Project</h2>
+                    </div>
+
+                    <button class="work-preview-modal__close" type="button" data-close-preview
+                        aria-label="Close website preview">×</button>
+                </div>
+
+                <div class="work-preview-modal__body">
+                    <iframe id="work-preview-frame" title="Website project preview" loading="lazy" src="about:blank"
+                        allow="fullscreen"></iframe>
+
+                    <div class="work-preview-modal__fallback" hidden>
+                        <p>
+                            A live preview is unavailable for this project.
+                            You can still explore its visual design in the project card.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
+
 
     <!-- Shared footer -->
     <footer class="site-footer"></footer>
@@ -43,4 +624,5 @@
     <script src="../../js/global/testimonials.js"></script>
     <script src="../../js/pages/work.js"></script>
 </body>
+
 </html>

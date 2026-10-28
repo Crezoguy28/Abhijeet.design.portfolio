@@ -3,6 +3,1353 @@
    Project categories, cards, browser mockups and work layout.
 ========================================================= */
 
+
+/* =========================================
+   WORK HERO
+========================================= */
+
 .work-page {
+    background: #060913;
     min-height: 100vh;
+}
+
+.work-hero {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    min-height: 650px;
+    overflow: hidden;
+}
+
+/* Image layers */
+
+.hero-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.hero-layer1 {
+    z-index: 0;
+}
+
+.hero-layer2 {
+    z-index: 2;
+}
+
+.hero-layer img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* Text layers */
+
+.hero-word-layer {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 5%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.hero-word-layer1 {
+    z-index: 1;
+}
+
+.hero-word-layer2 {
+    z-index: 3;
+}
+
+.hero-word {
+    margin: 0;
+    padding: 0;
+    font-family: "Basement", sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 5.56vw, 96px);
+    line-height: 1;
+    letter-spacing: 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Filled gradient text */
+
+.hero-word-filled {
+    color: transparent;
+    background: linear-gradient(180deg,
+            #ffffff 0%,
+            #a9a9a9 38%,
+            rgba(23, 23, 23, 0) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Foreground outline text */
+
+.hero-word-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.32);
+    opacity: 0.3;
+}
+
+/* Smaller screens */
+
+@media (max-width: 768px) {
+    .work-hero {
+        min-height: 560px;
+    }
+
+    .hero-layer img {
+        object-position: center top;
+    }
+
+    .hero-word-layer {
+        bottom: 10%;
+    }
+
+    .hero-word {
+        font-size: clamp(28px, 7.5vw, 56px);
+        letter-spacing: -0.045em;
+    }
+}
+
+/* =========================================
+   SECTION 2 — WORK SHOWCASE
+========================================= */
+
+.work-showcase {
+    position: relative;
+    width: 100%;
+    padding: 120px 80px;
+    background: transparent;
+}
+
+/* Category filters */
+
+.work-filters {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 0 0 40px;
+}
+
+.work-filter {
+    min-height: 46px;
+    padding: 0 25px;
+    border: 1px solid #ff5b2e;
+    border-radius: 999px;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 250ms ease, color 250ms ease;
+}
+
+.work-filter:hover,
+.work-filter.is-active {
+    background: linear-gradient(110deg, #ff653c, #a93c20);
+    color: #fff;
+}
+
+.work-filter:focus-visible,
+.work-control:focus-visible,
+.work-arrow:focus-visible,
+.work-card:focus-visible {
+    outline: 2px solid #ff5b2e;
+    outline-offset: 4px;
+}
+
+/* Carousel stage — no added panel or background */
+
+.work-stage {
+    position: relative;
+    width: 100%;
+    height: clamp(480px, 30vw, 760px);
+    overflow: hidden;
+    background: transparent;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Cards */
+
+.work-carousel {
+    position: absolute;
+    inset: 0;
+    perspective: 1400px;
+    transform-style: preserve-3d;
+}
+
+.work-carousel .work-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 40%;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 16px;
+    background: transparent;
+    cursor: grab;
+    transform: translate(-50%, -50%);
+    transform-origin: center center;
+    transition:
+        left 650ms cubic-bezier(.22, 1, .36, 1),
+        top 650ms cubic-bezier(.22, 1, .36, 1),
+        width 650ms cubic-bezier(.22, 1, .36, 1),
+        height 650ms cubic-bezier(.22, 1, .36, 1),
+        transform 650ms cubic-bezier(.22, 1, .36, 1),
+        opacity 450ms ease,
+        filter 450ms ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.work-carousel .work-card:active {
+    cursor: grabbing;
+}
+
+.work-carousel .work-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    pointer-events: none;
+    -webkit-user-drag: none;
+}
+
+/* Center card */
+
+.work-carousel .work-card[data-position="0"] {
+    left: 50%;
+    top: 50%;
+    width: 40%;
+    z-index: 8;
+    opacity: 1;
+    filter: none;
+    transform: translate(-50%, -50%) rotateY(0deg);
+    cursor: grab;
+}
+
+/* One card to either side */
+
+.work-carousel .work-card[data-position="1"] {
+    left: 72%;
+    top: 50%;
+    width: 30%;
+    z-index: 7;
+    opacity: 1;
+    filter: brightness(.6);
+    transform: translate(-50%, -50%) rotateY(-20deg);
+}
+
+.work-carousel .work-card[data-position="-1"] {
+    left: 28%;
+    top: 50%;
+    width: 30%;
+    z-index: 7;
+    opacity: 1;
+    filter: brightness(.6);
+    transform: translate(-50%, -50%) rotateY(20deg);
+}
+
+/* Two cards further back */
+
+.work-carousel .work-card[data-position="2"] {
+    left: 87%;
+    top: 50%;
+    width: 20%;
+    z-index: 6;
+    opacity: .85;
+    filter: brightness(.4);
+    transform: translate(-50%, -50%) rotateY(-25deg);
+}
+
+.work-carousel .work-card[data-position="-2"] {
+    left: 13%;
+    top: 50%;
+    width: 20%;
+    z-index: 6;
+    opacity: .85;
+    filter: brightness(.4);
+    transform: translate(-50%, -50%) rotateY(25deg);
+}
+
+/* Hide cards beyond the visible five positions */
+
+.work-carousel .work-card[data-position="hidden"] {
+    left: 50%;
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(.75);
+}
+
+/* Arrows centered at the left and right edges */
+
+.work-arrow {
+    position: absolute;
+    z-index: 15;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, .45);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .4);
+    color: #fff;
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 1;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: background 200ms ease, border-color 200ms ease;
+}
+
+.work-arrow:hover {
+    background: #ff5b2e;
+    border-color: #ff5b2e;
+}
+
+.work-arrow-prev {
+    left: 12px;
+}
+
+.work-arrow-next {
+    right: 12px;
+}
+
+/* Replay and reset controls */
+
+.work-control {
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: #111;
+    cursor: pointer;
+    transition: transform 200ms ease;
+}
+
+.work-control:hover {
+    transform: scale(1.06);
+}
+
+.work-replay {
+    left: 0;
+    width: 44px;
+    height: 44px;
+    font-size: 25px;
+}
+
+.work-close {
+    right: 0;
+    width: 44px;
+    height: 44px;
+    font-size: 27px;
+    font-weight: 300;
+}
+
+/* Replay entrance */
+
+.work-stage.is-replaying .work-carousel .work-card {
+    transition:
+        opacity 350ms ease,
+        transform 650ms cubic-bezier(.22, 1, .36, 1),
+        left 650ms cubic-bezier(.22, 1, .36, 1),
+        top 650ms cubic-bezier(.22, 1, .36, 1),
+        width 650ms cubic-bezier(.22, 1, .36, 1),
+        height 650ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.work-stage.is-replaying .work-carousel .work-card[data-position="0"] {
+    animation: work-card-replay 650ms ease both;
+}
+
+@keyframes work-card-replay {
+    0% {
+        opacity: .2;
+        transform: translate(-50%, -45%) scale(.92);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .work-showcase {
+        padding-right: 3%;
+        padding-left: 3%;
+    }
+
+    .work-filters {
+        padding-bottom: 42px;
+    }
+
+    .work-stage {
+        height: 65vw;
+        min-height: 430px;
+    }
+
+    .work-carousel .work-card[data-position="0"] {
+        width: 38%;
+        height: 68%;
+    }
+
+    .work-carousel .work-card[data-position="1"] {
+        left: 75%;
+        width: 24%;
+        height: 53%;
+    }
+
+    .work-carousel .work-card[data-position="-1"] {
+        left: 25%;
+        width: 24%;
+        height: 53%;
+    }
+
+    .work-carousel .work-card[data-position="2"] {
+        left: 92%;
+        width: 15%;
+        height: 37%;
+    }
+
+    .work-carousel .work-card[data-position="-2"] {
+        left: 8%;
+        width: 15%;
+        height: 37%;
+    }
+}
+
+@media (max-width: 600px) {
+    .work-showcase {
+        padding: 0 12px 48px;
+    }
+
+    .work-filters {
+        gap: 8px;
+        padding-bottom: 28px;
+    }
+
+    .work-filter {
+        min-height: 38px;
+        padding: 0 14px;
+        font-size: 12px;
+    }
+
+    .work-stage {
+        height: 125vw;
+        min-height: 450px;
+        max-height: 620px;
+    }
+
+    .work-carousel .work-card[data-position="0"] {
+        width: 56%;
+        height: 58%;
+    }
+
+    .work-carousel .work-card[data-position="1"] {
+        left: 78%;
+        width: 30%;
+        height: 45%;
+        transform: translate(-50%, -50%) rotateY(-12deg);
+    }
+
+    .work-carousel .work-card[data-position="-1"] {
+        left: 22%;
+        width: 30%;
+        height: 45%;
+        transform: translate(-50%, -50%) rotateY(12deg);
+    }
+
+    .work-carousel .work-card[data-position="2"] {
+        left: 99%;
+        width: 18%;
+        height: 32%;
+    }
+
+    .work-carousel .work-card[data-position="-2"] {
+        left: 1%;
+        width: 18%;
+        height: 32%;
+    }
+
+    .work-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 28px;
+    }
+
+    .work-arrow-prev {
+        left: 2px;
+    }
+
+    .work-arrow-next {
+        right: 2px;
+    }
+
+    .work-replay,
+    .work-close {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .work-card,
+    .work-filter,
+    .work-arrow,
+    .work-control {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+
+/* =========================================
+   SELECTED PROJECTS
+========================================= */
+
+.work-projects {
+    --wp-bg: #0b0b0b;
+    --wp-surface: #151515;
+    --wp-text: #f3f1ed;
+    --wp-muted: #a19e99;
+    --wp-border: rgba(255, 255, 255, 0.15);
+
+    position: relative;
+    width: 100%;
+    padding: clamp(76px, 9vw, 130px) 2.2%;
+    background: var(--wp-bg);
+    color: var(--wp-text);
+    overflow: hidden;
+}
+
+.work-projects,
+.work-projects * {
+    box-sizing: border-box;
+}
+
+.work-projects__container {
+    width: 100%;
+    max-width: 1800px;
+    margin-inline: auto;
+}
+
+.work-projects__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+    margin-bottom: 48px;
+}
+
+.work-projects__eyebrow {
+    display: block;
+    margin-bottom: 18px;
+    color: var(--wp-muted);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+}
+
+.work-projects__heading h2 {
+    margin: 0;
+    font-size: clamp(38px, 5.5vw, 76px);
+    line-height: 0.98;
+    letter-spacing: -0.065em;
+    font-weight: 500;
+}
+
+.work-projects__heading h2 span {
+    color: #a9a9a9;
+}
+
+.work-projects__heading>p {
+    max-width: 300px;
+    margin: 0 0 4px;
+    color: var(--wp-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Two-column layout */
+
+.work-projects__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2%;
+    row-gap: clamp(42px, 5vw, 76px);
+}
+
+/* Grid cards are separate from the animated carousel cards. */
+.work-projects__grid > .project-grid-card,
+.work-projects__grid > .work-card {
+    position: relative;
+    inset: auto;
+    left: auto;
+    top: auto;
+    display: block;
+    width: auto;
+    height: auto;
+    min-width: 0;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    cursor: default;
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transform-origin: initial;
+    transition: none;
+    pointer-events: auto;
+    perspective: none;
+}
+.work-projects__grid > .project-grid-card img,
+.work-projects__grid > .work-card img {
+    pointer-events: auto;
+}
+.work-projects__grid > .project-grid-card:active,
+.work-projects__grid > .work-card:active {
+    cursor: default;
+}
+
+
+.work-card {
+    min-width: 0;
+}
+
+.work-card__topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    min-height: 66px;
+    padding: 0 12px 14px;
+    border-top: 1px solid var(--wp-border);
+    border-radius: 24px 24px 0 0;
+}
+
+.work-card__identity {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 0;
+}
+
+.work-card__arrow {
+    flex-shrink: 0;
+    font-size: 24px;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.work-projects .work-card:hover .work-card__arrow {
+    transform: translate(3px, -3px);
+}
+
+.work-card__topline h3 {
+    margin: 0;
+    overflow: hidden;
+    font-size: clamp(15px, 1.35vw, 20px);
+    font-weight: 450;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.work-card__year {
+    flex-shrink: 0;
+    color: var(--wp-muted);
+    font-size: 13px;
+}
+
+/* Image viewport */
+
+.work-card__preview {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1.5 / 1;
+    padding: 0;
+    border: 0;
+    border-radius: 18px;
+    background: var(--wp-surface);
+    color: inherit;
+    text-align: left;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+button.work-card__preview {
+    cursor: pointer;
+}
+
+.work-card__website-viewport {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    /* Keep wheel/touch scrolling available to the page, never trap it here. */
+    overscroll-behavior: auto;
+    touch-action: auto;
+}
+
+.work-card__website-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    flex: none;
+    align-self: flex-start;
+    object-fit: initial;
+    object-position: top;
+    transform: translate3d(0, 0, 0);
+    /* JS sets the hover-scroll timing; this is the fallback/reset transition. */
+    transition: transform 0.65s ease-out;
+    will-change: transform;
+}
+
+
+/* Use JS to calculate the exact scroll distance on hover. */
+.work-card--website .work-card__website-image {
+    will-change: transform;
+}
+
+.work-card__preview-hint,
+.work-card__open-label {
+    position: absolute;
+    z-index: 2;
+    right: 14px;
+    bottom: 14px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    background: rgba(10, 10, 10, 0.78);
+    color: #fff;
+    font-size: 11px;
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    transform: translateY(5px);
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.work-projects .work-card:hover .work-card__preview-hint,
+.work-projects .work-card:hover .work-card__open-label,
+.work-projects .work-card:focus-within .work-card__preview-hint,
+.work-projects .work-card:focus-within .work-card__open-label {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* App and dashboard visuals */
+
+.work-card__preview--product {
+    display: grid;
+    place-items: center;
+    padding: 12px;
+    background:
+        radial-gradient(circle at 50% 35%,
+            rgba(115, 82, 160, 0.2),
+            transparent 65%),
+        #17151b;
+}
+
+.work-card__preview--product>img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    transition: transform 0.6s cubic-bezier(.2, .7, .2, 1);
+}
+
+.work-projects .work-card__preview--product:hover>img {
+    transform: scale(1.035);
+}
+
+.work-card__preview--mobile>img {
+    object-fit: contain;
+}
+
+/* Project information */
+
+.work-card__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 20px 3px 0;
+}
+
+.work-card__details h4 {
+    margin: 0;
+    font-size: clamp(16px, 1.5vw, 21px);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+}
+
+.work-card__details p {
+    margin: 8px 0 0;
+    color: var(--wp-muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.work-card__type {
+    flex-shrink: 0;
+    padding-top: 3px;
+    color: var(--wp-muted);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+}
+
+.work-card__details--expanded {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+}
+
+.work-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.work-card__tags span {
+    padding: 6px 10px;
+    border: 1px solid var(--wp-border);
+    border-radius: 999px;
+    color: #d1cfca;
+    font-size: 10px;
+}
+
+/* Website screenshot scrolling is automatic on hover; the page keeps native scrolling. */
+.work-card__preview:focus-visible {
+    outline: 2px solid #ff5b2e;
+    outline-offset: 4px;
+}
+
+/* Figma prototype link: positioned as a sibling overlay, never nested in the preview button. */
+.work-card__preview-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.work-card__preview-wrap > .work-card__preview {
+    width: 100%;
+}
+
+.work-card__prototype-link {
+    position: absolute;
+    z-index: 5;
+    top: 12px;
+    right: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 12px;
+    background: rgba(10, 12, 20, 0.82);
+    color: #fff;
+    text-decoration: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.work-card__prototype-link:hover {
+    background: #ff5b2e;
+    border-color: #ff5b2e;
+    transform: translateY(-2px);
+}
+
+.work-card__prototype-link:focus-visible {
+    outline: 2px solid #ff5b2e;
+    outline-offset: 3px;
+}
+
+.work-card__prototype-link svg,
+.work-card__prototype-link img {
+    display: block;
+    width: 21px;
+    height: 21px;
+    object-fit: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .work-card__prototype-link {
+        transition: none;
+    }
+}
+
+/* Website preview modal */
+
+.work-preview-modal {
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 3vh 3vw;
+    visibility: hidden;
+    opacity: 0;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.work-preview-modal.is-open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.work-preview-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.86);
+    backdrop-filter: blur(12px);
+}
+
+.work-preview-modal__dialog {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: min(1500px, 100%);
+    height: 94vh;
+    border: 1px solid var(--wp-border);
+    border-radius: 18px;
+    background: #111;
+    overflow: hidden;
+    transform: translateY(14px) scale(0.99);
+    transition: transform 0.3s ease;
+}
+
+.work-preview-modal.is-open .work-preview-modal__dialog {
+    transform: translateY(0) scale(1);
+}
+
+.work-preview-modal__header {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--wp-border);
+}
+
+.work-preview-modal__header span {
+    color: var(--wp-muted);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+}
+
+.work-preview-modal__header h2 {
+    margin: 5px 0 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.work-preview-modal__close {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid var(--wp-border);
+    border-radius: 50%;
+    background: transparent;
+    color: #fff;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.work-preview-modal__body {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    background: #181818;
+}
+
+.work-preview-modal__body iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #fff;
+}
+
+.work-preview-modal__fallback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 30px;
+    color: var(--wp-muted);
+    text-align: center;
+}
+
+.work-preview-modal__fallback[hidden] {
+    display: none;
+}
+
+body.work-preview-open {
+    overflow: hidden;
+}
+
+/* Responsive */
+
+@media (max-width: 760px) {
+    .work-projects__grid > .project-grid-card,
+    .work-projects__grid > .work-card {
+        position: relative;
+        inset: auto;
+        left: auto;
+        top: auto;
+        width: auto;
+        height: auto;
+        transform: none;
+    }
+
+    .work-projects {
+        padding: 76px 5%;
+    }
+
+    .work-projects__heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        margin-bottom: 34px;
+    }
+
+    .work-projects__heading>p {
+        max-width: 420px;
+    }
+
+    .work-projects__grid {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 42px;
+    }
+
+    .work-card__topline {
+        min-height: 58px;
+    }
+
+    .work-card__preview {
+        aspect-ratio: 1.35 / 1;
+    }
+
+    .work-card__details h4 {
+        font-size: 17px;
+    }
+
+    .work-preview-modal {
+        padding: 10px;
+    }
+
+    .work-preview-modal__dialog {
+        height: 94dvh;
+        border-radius: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .work-projects *,
+    .work-preview-modal * {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+/* =========================================================
+   WEBSITE PREVIEW MODAL
+   Fit image + custom scrollbar + responsive layout
+========================================================= */
+
+.work-preview-modal {
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    padding: 3vh 3vw;
+    visibility: hidden;
+    opacity: 0;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.work-preview-modal.is-open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.work-preview-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.86);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.work-preview-modal__dialog {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: min(94vw, 1400px);
+    max-width: 1400px;
+    height: 92vh;
+    height: 92dvh;
+    max-height: 92vh;
+    max-height: 92dvh;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--wp-border, rgba(255, 255, 255, 0.15));
+    border-radius: 18px;
+    background: #111;
+    transform: translateY(14px) scale(0.99);
+    transition: transform 0.3s ease;
+}
+
+.work-preview-modal.is-open .work-preview-modal__dialog {
+    transform: translateY(0) scale(1);
+}
+
+/* Modal header */
+
+.work-preview-modal__header {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--wp-border, rgba(255, 255, 255, 0.15));
+}
+
+.work-preview-modal__header span {
+    color: var(--wp-muted, #999);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+}
+
+.work-preview-modal__header h2 {
+    margin: 5px 0 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.work-preview-modal__close {
+    display: grid;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid var(--wp-border, rgba(255, 255, 255, 0.15));
+    border-radius: 50%;
+    background: transparent;
+    color: #fff;
+    font-size: 27px;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.work-preview-modal__close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Preview content area */
+
+.work-preview-modal__body {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    background: #181818;
+}
+
+/* Full-page screenshot container */
+
+.work-preview-modal__fallback {
+    position: absolute;
+    inset: 0;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(160, 160, 160, 0.65) transparent;
+    color: var(--wp-muted, #999);
+    text-align: center;
+}
+
+.work-preview-modal__fallback[hidden] {
+    display: none !important;
+}
+
+/* Image maintains its original aspect ratio.
+   Long screenshots scroll vertically instead of being cropped. */
+
+.work-preview-modal__fallback img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    object-fit: initial !important;
+    object-position: top center !important;
+    margin: 0 auto !important;
+    border-radius: 10px;
+}
+
+.work-preview-modal__fallback p {
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 13px;
+}
+
+/* Custom scrollbar — Chrome, Edge and Safari */
+
+.work-preview-modal__fallback::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.work-preview-modal__fallback::-webkit-scrollbar-track {
+    margin-block: 8px;
+    background: transparent;
+}
+
+.work-preview-modal__fallback::-webkit-scrollbar-thumb {
+    min-height: 36px;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background-color: rgba(160, 160, 160, 0.55);
+    background-clip: padding-box;
+    transition: background-color 0.2s ease;
+}
+
+.work-preview-modal__fallback::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(220, 220, 220, 0.85);
+    background-clip: padding-box;
+}
+
+.work-preview-modal__fallback::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/* Live website iframe */
+
+.work-preview-modal__body iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border: 0;
+    background: #fff;
+}
+
+/* Prevent background page scrolling while modal is open */
+
+body.work-preview-open {
+    overflow: hidden;
+}
+
+/* Responsive layout */
+
+@media (max-width: 760px) {
+    .work-preview-modal {
+        padding: 10px;
+    }
+
+    .work-preview-modal__dialog {
+        width: 96vw;
+        max-width: 96vw;
+        height: 94vh;
+        height: 94dvh;
+        max-height: 94vh;
+        max-height: 94dvh;
+        border-radius: 12px;
+    }
+
+    .work-preview-modal__header {
+        gap: 12px;
+        padding: 12px 14px;
+    }
+
+    .work-preview-modal__fallback {
+        padding: 12px;
+    }
+
+    .work-preview-modal__fallback::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .work-preview-modal__close {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+    .work-preview-modal,
+    .work-preview-modal__dialog,
+    .work-preview-modal__close,
+    .work-preview-modal__fallback::-webkit-scrollbar-thumb {
+        transition: none !important;
+    }
 }
